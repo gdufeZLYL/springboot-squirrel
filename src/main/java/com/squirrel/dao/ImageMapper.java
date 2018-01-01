@@ -2,9 +2,11 @@ package com.squirrel.dao;
 
 import com.squirrel.pojo.Image;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @Mapper
 public interface ImageMapper {
     int deleteByPrimaryKey(Integer id);
