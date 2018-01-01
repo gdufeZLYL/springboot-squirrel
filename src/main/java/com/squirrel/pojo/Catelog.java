@@ -40,4 +40,14 @@ public class Catelog {
     public void setStatus(Byte status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Catelog{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", number=" + number +
+                ", status=" + status +
+                '}';
+    }
 }
