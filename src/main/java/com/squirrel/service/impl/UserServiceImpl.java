@@ -24,9 +24,9 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     public void addUser(User user) {
-        //userMapper.insert(user);
+        userMapper.insert(user);
         //空属性为MySQL设定默认值
-        userMapper.insertSelective(user);
+        //userMapper.insertSelective(user);
     }
 
     public User getUserByPhone(String phone) {

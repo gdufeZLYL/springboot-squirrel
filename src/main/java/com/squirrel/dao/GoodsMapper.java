@@ -4,9 +4,11 @@ package com.squirrel.dao;
 import com.squirrel.pojo.Goods;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @Mapper
 public interface GoodsMapper {
     /**

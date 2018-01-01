@@ -110,4 +110,21 @@ public class Goods {
     public void setPolishTime(String polishTime) {
         this.polishTime = polishTime;
     }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "id=" + id +
+                ", catelogId=" + catelogId +
+                ", userId=" + userId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", realPrice=" + realPrice +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", polishTime='" + polishTime + '\'' +
+                ", commetNum=" + commetNum +
+                ", describle='" + describle + '\'' +
+                '}';
+    }
 }
