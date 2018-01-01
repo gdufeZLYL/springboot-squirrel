@@ -100,4 +100,20 @@ public class User {
     public void setStatus(Byte status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", phone='" + phone + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", qq='" + qq + '\'' +
+                ", createAt='" + createAt + '\'' +
+                ", goodsNum=" + goodsNum +
+                ", power=" + power +
+                ", lastLogin='" + lastLogin + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }
