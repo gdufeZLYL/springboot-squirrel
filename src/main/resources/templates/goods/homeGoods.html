@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <title>广财大二手工坊</title>
-    <link rel="stylesheet" href="../../static/css/index.css" />
-    <script type="text/javascript" src="../../static/js/jquery.js" ></script>
-    <script type="text/javascript" src="../../static/js/materialize.min.js" ></script>
-    <script type="text/javascript" src="../../static/js/index.bundle.js" ></script>
-    <link rel="stylesheet" href="../../static/css/materialize-icon.css" />
-    <link rel="stylesheet" href="../../static/css/user.css" />
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <script type="text/javascript" th:src="@{/js/jquery.js}" ></script>
+    <script type="text/javascript" th:src="@{/js/materialize.min.js}" ></script>
+    <script type="text/javascript" th:src="@{/js/index.bundle.js}" ></script>
+    <link rel="stylesheet" th:href="@{/css/materialize-icon.css}" />
+    <link rel="stylesheet" th:href="@{/css/user.css}" />
+</head>
     <script>
         function showLogin() {
             if($("#signup-show").css("display")=='block'){
@@ -43,13 +44,13 @@
 <div ng-controller="headerController" class="header stark-components navbar-fixed ng-scope">
     <nav class="white nav1">
         <div class="nav-wrapper">
-            <a href="<%=basePath%>goods/homeGoods" class="logo">
+            <a th:href="@{/goods/homeGoods}" class="logo">
                 <em class="em1">广财大</em>
                 <em class="em2">二手工坊</em>
                 <em class="em3">gdufe.market</em>
             </a>
             <div class="nav-wrapper search-bar">
-                <form ng-submit="search()" class="ng-pristine ng-invalid ng-invalid-required" action="/goods/search">
+                <form ng-submit="search()" class="ng-pristine ng-invalid ng-invalid-required" th:action="@{/goods/search}">
                     <div class="input-field">
                         <input id="search" name="str" placeholder="搜点什么吧233..." style="height: 40px;"
                                class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"/>
@@ -114,6 +115,7 @@
     时间：2017-05-05
     描述：登录
 -->
+<!--
 <div ng-controller="loginController" class="ng-scope">
     <div id="login-show" class="login stark-components">
         <div class="publish-box z-depth-4">
@@ -145,11 +147,13 @@
         </div>
     </div>
 </div>
+-->
 <!--
     作者：hlk_1135@outlook.com
     时间：2017-05-06
     描述：注册
 -->
+<!--
 <div ng-controller="signupController" class="ng-scope">
     <div id="signup-show" class="signup stark-components">
         <div class="publish-box z-depth-4">
@@ -185,7 +189,9 @@
         </div>
     </div>
 </div>
+-->
 <!--更改用户名-->
+<!--
 <div ng-controller="changeNameController" class="ng-scope">
     <div id="changeName" class="change-name stark-components">
         <div class="publish-box z-depth-4">
@@ -209,11 +215,13 @@
         </div>
     </div>
 </div>
+-->
 <!--
     作者：hlk_1135@outlook.com
     时间：2017-05-05
     描述：左侧导航条
 -->
+<!--
 <div ng-controller="sidebarController" class="sidebar stark-components ng-scope">
     <li ng-class="{true: 'active'}[isAll]">
         <a href="/goods/catelog/1" class="index">
@@ -269,17 +277,21 @@
         <p>©2017 GDUFE</p>
     </div>
 </div>
+-->
 <!--
     作者：hlk_1135@outlook.com
     时间：2017-05-05
     描述：右侧显示部分
 -->
+<!--
 <div class="main-content">
+-->
     <!--
         作者：hlk_1135@outlook.com
         时间：2017-05-05
         描述：右侧banner（图片）部分
     -->
+<!--
     <div class="slider-wapper">
         <div class="slider" style="height: 440px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
             <ul class="slides" style="height: 400px;">
@@ -303,11 +315,13 @@
             </ul>
         </div>
     </div>
+    -->
     <!--
         作者：hlk_1135@outlook.com
         时间：2017-05-05
         描述：最新发布
     -->
+<!--
     <div class="index-title">
         <a href="">最新发布</a>
         <hr class="hr1">
@@ -334,11 +348,13 @@
             </c:forEach>
         </div>
     </div>
+    -->
     <!--
         作者：hlk_1135@outlook.com
         时间：2017-05-05
         描述：闲置数码
     -->
+<!--
     <div class="index-title">
         <a href="">闲置数码</a>
         <hr class="hr1">
@@ -365,11 +381,13 @@
             </c:forEach>
         </div>
     </div>
+    -->
     <!--
         作者：hlk_1135@outlook.com
         时间：2017-05-05
         描述：校园代步
     -->
+<!--
     <div class="index-title">
         <a href="">校园代步</a>
         <hr class="hr1">
@@ -527,5 +545,6 @@
         </div>
     </div>
 </div>
+-->
 </body>
 </html>

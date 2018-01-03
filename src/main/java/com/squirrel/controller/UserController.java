@@ -64,10 +64,12 @@ public class UserController {
     public ModelAndView loginValidate(HttpServletRequest request, HttpServletResponse response, User user, ModelMap modelMap) {
         User cur_user = userService.getUserByPhone(user.getPhone());
         String url=request.getHeader("Referer");
+        ModelAndView modelAndView = new ModelAndView();
         if(cur_user != null) {
             String pwd = MD5.md5(user.getPassword());
             if(pwd.equals(cur_user.getPassword())) {
                 request.getSession().setAttribute("cur_user",cur_user);
+                //modelAndView.addObject(")
                 return new ModelAndView("redirect:"+url);
             }
         }
