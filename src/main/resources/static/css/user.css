@@ -1,0 +1,280 @@
+.basic {
+    float: left;
+    width: 550px;
+    margin: 40px 0 0 100px;
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.basic h1 {
+    margin-left: 140px;
+    padding-bottom: 5px;
+}
+.setting-title {
+    font-size: 15px;
+    color: #969696;
+}
+.setted div {
+    font-size: 15px;
+    display: inline-block;
+}
+.changeinfo {
+    margin-top: 30px;
+    width: 100%;
+    height: 50px;
+}
+.changeinfo span {
+    position: absolute;
+    float: left;
+    margin-top: 5px;
+    margin-left: 70px;
+    font-size: 15px;
+    color: #969696;
+
+}
+#checkphone {
+    margin-left: 10px;
+    color: #3db922;
+}
+.setting-save {
+    width: 100px;
+    margin: 10px 50px 60px 160px;
+    border-radius: 4px;
+    border: none;
+    background-color: #3db922;
+    color: #fff;
+    padding: 10px 10px;
+}
+.setting-save:hover {
+    cursor: pointer;
+}
+.in_info {
+    position: relative;
+    float: left;
+    margin-left: 170px;
+    padding: 5px 10px;
+    font-size: 15px;
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    background-color: hsla(0,0%,71%,.1);
+}
+.basic .ph {
+    width: 100%;
+    height: 100px;
+
+    background: red;
+}
+.basic .ph .photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    margin-top: 20px;
+    margin-left: 40px;
+    overflow: hidden;
+    cursor: pointer;
+    background: cyan;
+}
+.basic .ph .photo img {
+    width: 100%;
+}
+.cfile {
+    margin-left: 65px;
+}
+.btn-hollow {
+    padding: 5px 2px;
+    border: 1px solid rgba(59,194,29,.7);
+    color: #42c02e!important;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 40px;
+    background: none;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+}
+.hide {
+    position: absolute;
+    display: block!important;
+    width: 82px;
+    opacity: 0;
+    font-size: inherit;
+    line-height: inherit;
+}
+.name {
+    display: block;
+    width: 160px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+.school {
+    display: block;
+    width: 160px;
+    text-align: center;
+    color: #999;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    margin: 10px auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.home_nav ul li:hover {
+    background-color: cyan;
+}
+.interact span a {
+    color: #939cac;;
+}
+.interact span a:hover {
+    color: deepskyblue;
+}
+.sha {
+    float: left;
+    width: 400px;
+    margin-left: 100px;
+    margin: 40px 0 0 100px;
+}
+.sha .publ {
+    width: 400px;
+    margin-left: 70px;
+    margin-top: -30px;
+    background-color: #fff;
+    box-shadow: 7px 7px 20px 0 #e8e9eb;
+}
+.sha .publ .pub_con {
+    position: relative;
+}
+.sha .publ .text_pu {
+    width: 400px;
+    padding: 10px 20px;
+}
+.sha .publ .text_pu .emoji-wysiwyg-editor {
+    position: relative;
+    z-index: 2;
+    outline: 0;
+    width: 380px;
+    min-height: 100px;
+    line-height: 25px;
+    color: #333;
+    font-size: 16px;
+    font-family: "Avenir Next",Avenir,"Helvetica Neue",Helvetica,"Lantinghei SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",STHeiti,"WenQuanYi Micro Hei",SimSun,sans-serif;
+}
+#dir {
+    height: 100px;
+}
+.bannerimg {
+    background: url(../img/findfun.png);
+    height: 400px;
+}
+.bannerimg .bannerul {
+    width: 530px;
+    line-height: 30px;
+    margin: 20px 0 0 0;
+    float: left;
+    color: #000000;
+    font-size: 20px;
+}
+.text2 {
+    float: left;
+    margin-left: 40px;
+}
+.text4 span {
+    font-weight: bold;
+}
+.text6 {
+    font-weight: bold;
+    float: left;
+    margin-left: 40px;
+}
+.logoimg {
+    position: absolute;
+    float: right;
+    width: 150px;
+    height: 65px;
+    bottom: 3px;
+    right: 3px;
+}
+.bannerul p {
+    -webkit-transform: translate(60px);
+    -moz-transform: translate(60px);
+    -o-transform: translate(60px);
+    -ms-transform: translate(60px);
+    transform: translate(60px);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8), 2px 2px 3px rgba(180, 151, 151, 0.3);//������Ӱ
+}
+.bannerul p:nth-child(1) {
+    -webkit-animation: animations 2s ease-out 1s backwards;
+    -moz-animation: animations 2s ease-out 1s backwards;
+    -o-animation: animations 2s ease-out 1s backwards;
+    -ms-animation: animations 2s ease-out 1s backwards;
+    animation: animations 2s ease-out 1s backwards;
+}
+.bannerul p:nth-child(2) {
+    -webkit-animation: animations 2s ease-out 3s backwards;
+    -moz-animation: animations 2s ease-out 3s backwards;
+    -o-animation: animations 2s ease-out 3s backwards;
+    -ms-animation: animations 2s ease-out 3s backwards;
+    animation: animations 2s ease-out 3s backwards;
+}
+.bannerul p:nth-child(3) {
+    -webkit-animation: animations 2s ease-in-out 5s backwards;
+    -moz-animation: animations 2s ease-in-out 5s backwards;
+    -o-animation: animations 2s ease-in-out 5s backwards;
+    -ms-animation: animations 2s ease-in-out 5s backwards;
+    animation: animations 2s ease-in-out 5s backwards;
+}
+.bannerul p:nth-child(4) {
+    -webkit-animation: animations 2s ease-in-out 7s backwards;
+    -moz-animation: animations 2s ease-in-out 7s backwards;
+    -o-animation: animations 2s ease-in-out 7s backwards;
+    -ms-animation: animations 2s ease-in-out 7s backwards;
+    animation: animations 2s ease-in-out 7s backwards;
+}
+.bannerul p:nth-child(5) {
+    -webkit-animation: animations 2s ease-in-out 9s backwards;
+    -moz-animation: animations 2s ease-in-out 9s backwards;
+    -o-animation: animations 2s ease-in-out 9s backwards;
+    -ms-animation: animations 2s ease-in-out 9s backwards;
+    animation: animations 2s ease-in-out 9s backwards;
+}
+.bannerul p:nth-child(6) {
+    -webkit-animation: animations 2s ease-in-out 11s backwards;
+    -moz-animation: animations 2s ease-in-out 11s backwards;
+    -o-animation: animations 2s ease-in-out 11s backwards;
+    -ms-animation: animations 2s ease-in-out 11s backwards;
+    animation: animations 2s ease-in-out 11s backwards;
+}
+@-webkit-keyframes animations {
+    0% {-webkit-transform:translate(0); opacity:0; }
+    50% {-webkit-transform:translate(30px); opacity:.5;}
+    100% {-webkit-transform:translate(60px); opacity:1;}
+}
+@-moz-keyframes animations {
+    0% {-moz-transform:translate(0);opacity:0;}
+    50% {-moz-transform:translate(30px);opacity:.5;}
+    100% {-moz-transform:translate(60px);opacity:1;}
+}
+@-o-keyframes animations {
+    0% {-o-transform:translate(0);opacity:0;}
+    50% {-o-transform:translate(30px);opacity:.5;}
+    100% {-o-transform:translate(60px);opacity:1;}
+}
+@-ms-keyframes animations {
+    0% {-ms-transform:translate(0);opacity:0;}
+    50% {-ms-transform:translate(30px);opacity:.5;}
+    100% {-ms-transform:translate(60px);opacity:1;}
+}
+@keyframes animations {
+    0% {transform:translate(0);opacity:0;}
+    50% {transform:translate(30px);opacity:.5;}
+    100% {transform:translate(60px);opacity:1;}
+}
