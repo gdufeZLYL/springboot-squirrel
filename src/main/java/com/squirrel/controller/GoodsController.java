@@ -64,7 +64,7 @@ public class GoodsController {
             String key = "catelog" + "Goods" + i;
             modelAndView.addObject(key, goodsAndImage);
         }
-        modelAndView.setViewName("goods/homeGoods");
+        modelAndView.setViewName("/goods/homeGoods");
         return modelAndView;
     }
 
