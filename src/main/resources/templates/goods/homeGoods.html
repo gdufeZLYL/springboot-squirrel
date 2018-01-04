@@ -40,7 +40,10 @@
         }
     </script>
 <body ng-view="ng-view">
-
+<!--
+    时间：2018/01/04 21:59:08
+    描述：顶部
+-->
 <div ng-controller="headerController" class="header stark-components navbar-fixed ng-scope">
     <nav class="white nav1">
         <div class="nav-wrapper">
@@ -52,7 +55,7 @@
             <div class="nav-wrapper search-bar">
                 <form ng-submit="search()" class="ng-pristine ng-invalid ng-invalid-required" th:action="@{/goods/search}">
                     <div class="input-field">
-                        <input id="search" name="str" placeholder="搜点什么吧233..." style="height: 40px;"
+                        <input id="search" name="str" placeholder="搜点什么吧..." style="height: 40px;"
                                class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"/>
                         <label for="search" class="active">
                             <i ng-click="search()" class="iconfont"></i>
@@ -70,7 +73,7 @@
                     <a th:href="@{/user/allGoods}">我发布的商品</a>
                 </li>
                 <li>
-                    <a>${cur_user.username}</a>
+                    <a th:text="${cur_user.username}"></a>
                 </li>
                 <li class="notification">
                     <i ng-click="showNotificationBox()" class="iconfont"></i>
@@ -107,19 +110,17 @@
     </nav>
 </div>
 <!--
-    作者：hlk_1135@outlook.com
-    时间：2017-05-05
+    时间：2018/01/04 22:54:16
     描述：登录
 -->
-<!--
 <div ng-controller="loginController" class="ng-scope">
     <div id="login-show" class="login stark-components">
         <div class="publish-box z-depth-4">
             <div class="row">
-                <a onclick="showLogin()">
+                <a th:onclick="'showLogin()'">
                     <div class="col s12 title"></div>
                 </a>
-                <form:form action="/user/login" method="post" commandName="user" role="form">
+                <form th:action="@{/user/login}" method="post" commandName="user" role="form">
                     <div class="input-field col s12">
                         <input type="text" name="phone" required="required" pattern="^1[0-9]{10}$" class="validate ng-pristine ng-empty ng-invalid ng-invalid-required ng-valid-pattern ng-touched" />
                         <label>手机</label>
@@ -135,15 +136,14 @@
                     </button>
                     <div class="col s12 signup-area">
                         <em>没有账号？赶快</em>
-                        <a onclick="showSignup()" class="signup-btn">注册</a>
+                        <a th:onclick="'showSignup()'" class="signup-btn">注册</a>
                         <em>吧！</em>
                     </div>
-                </form:form>
+                </form>
             </div>
         </div>
     </div>
 </div>
--->
 <!--
     作者：hlk_1135@outlook.com
     时间：2017-05-06
