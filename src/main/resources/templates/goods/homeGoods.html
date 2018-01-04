@@ -145,19 +145,17 @@
     </div>
 </div>
 <!--
-    作者：hlk_1135@outlook.com
-    时间：2017-05-06
+    时间：2018/01/04 23:15:34
     描述：注册
 -->
-<!--
 <div ng-controller="signupController" class="ng-scope">
     <div id="signup-show" class="signup stark-components">
         <div class="publish-box z-depth-4">
             <div class="row">
-                <a onclick="showSignup()">
+                <a th:onclick="'showSignup()'">
                     <div class="col s12 title"></div>
                 </a>
-                <form:form action="/user/addUser" method="post" commandName="user" role="form">
+                <form th:action="@{/user/addUser}" method="post" commandName="user" role="form">
                     <div class="input-field col s12">
                         <input type="text" name="username" required="required" class="validate ng-pristine ng-empty ng-invalid ng-invalid-required ng-valid-pattern ng-touched" />
                         <label>昵称</label>
@@ -178,14 +176,13 @@
                     </div>
                     <div ng-show="checkTelIsShow" class="login-area col s12">
                         <em>已有账号？去</em>
-                        <a onclick="showLogin()">登录</a>
+                        <a th:onclick="'showLogin()'">登录</a>
                     </div>
-                </form:form>
+                </form>
             </div>
         </div>
     </div>
 </div>
--->
 <!--更改用户名-->
 <!--
 <div ng-controller="changeNameController" class="ng-scope">
