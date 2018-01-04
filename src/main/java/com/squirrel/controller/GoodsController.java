@@ -41,8 +41,10 @@ public class GoodsController {
      * @throws Exception
      */
     @RequestMapping(value = "/homeGoods")
-    public ModelAndView homeGoods() throws Exception {
+    public ModelAndView homeGoods(HttpServletRequest request) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
+        User cur_user = (User) request.getSession().getAttribute("cur_user");
+        modelAndView.addObject("cur_user", cur_user);
         //商品种类数量
         int catelogSize = 7;
         //每个种类显示商品数量

@@ -60,52 +60,48 @@
                     </div>
                 </form>
             </div>
-            <ul class="right">
-                <c:if test="${empty cur_user}">
-                    <li class="publish-btn">
-                        <button ng-click="showLogin()" data-position="bottom" data-delay="50"
-                                data-tooltip="需要先登录哦！" class="red lighten-1 waves-effect waves-light btn" data-tooltip-id="510d3084-e666-f82f-3655-5eae4304a83a"	>
-                            我要发布</button>
-                    </li>
-                </c:if>
-                <c:if test="${!empty cur_user}">
-                    <li class="publish-btn">
-                        <button data-position="bottom" class="red lighten-1 waves-effect waves-light btn">
-                            <a href="/goods/publishGoods">我要发布</a>
-                        </button>
-                    </li>
-                    <li>
-                        <a href="/user/allGoods">我发布的商品</a>
-                    </li>
-                    <li>
-                        <a>${cur_user.username}</a>
-                    </li>
-                    <li class="notification">
-                        <i ng-click="showNotificationBox()" class="iconfont"></i>
-                        <div ng-show="notification.tagIsShow" class="notification-amount red lighten-1 ng-binding ng-hide">0 </div>
-                    </li>
-                    <li class="changemore">
-                        <a class="changeMoreVertShow()">
-                            <i class="iconfont"></i>
-                        </a>
-                        <div class="more-vert">
-                            <ul class="dropdown-content">
-                                <li><a href="/user/home">个人中心</a></li>
-                                <li><a>消息</a></li>
-                                <li><a onclick="ChangeName()">更改用户名</a></li>
-                                <li><a href="/user/logout">退出登录</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </c:if>
-                <c:if test="${empty cur_user}">
-                    <li>
-                        <a onclick="showLogin()">登录</a>
-                    </li>
-                    <li>
-                        <a onclick="showSignup()">注册</a>
-                    </li>
-                </c:if>
+            <ul class="right" th:if="${cur_user != null}">
+                <li class="publish-btn">
+                    <button data-position="bottom" class="red lighten-1 waves-effect waves-light btn">
+                        <a th:href="@{/goods/publishGoods}">我要发布</a>
+                    </button>
+                </li>
+                <li>
+                    <a th:href="@{/user/allGoods}">我发布的商品</a>
+                </li>
+                <li>
+                    <a>${cur_user.username}</a>
+                </li>
+                <li class="notification">
+                    <i ng-click="showNotificationBox()" class="iconfont"></i>
+                    <div ng-show="notification.tagIsShow" class="notification-amount red lighten-1 ng-binding ng-hide">0 </div>
+                </li>
+                <li class="changemore">
+                    <a class="changeMoreVertShow()">
+                        <i class="iconfont"></i>
+                    </a>
+                    <div class="more-vert">
+                        <ul class="dropdown-content">
+                            <li><a th:href="@{/user/home}">个人中心</a></li>
+                            <li><a>消息</a></li>
+                            <li><a th:onclick="'ChangeName()'">更改用户名</a></li>
+                            <li><a th:href="@{/user/logout}">退出登录</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul class="right" th:if="${cur_user == null}">
+                <li class="publish-btn">
+                    <button ng-click="showLogin()" data-position="bottom" data-delay="50"
+                            data-tooltip="需要先登录哦！" class="red lighten-1 waves-effect waves-light btn" data-tooltip-id="510d3084-e666-f82f-3655-5eae4304a83a"	>
+                        我要发布</button>
+                </li>
+                <li>
+                    <a th:onclick="'showLogin()'">登录</a>
+                </li>
+                <li>
+                    <a th:onclick="'showSignup()'">注册</a>
+                </li>
             </ul>
         </div>
     </nav>
