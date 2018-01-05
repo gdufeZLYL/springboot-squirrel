@@ -358,168 +358,173 @@
         </div>
     </div>
     <!--
-        作者：hlk_1135@outlook.com
-        时间：2017-05-05
+        时间：2018/01/05 15:43:59
         描述：校园代步
     -->
-<!--
     <div class="index-title">
         <a href="">校园代步</a>
-        <hr class="hr1">
-        <hr class="hr2">
+        <hr class="hr1" />
+        <hr class="hr2" />
     </div>
     <div class="waterfoo stark-components row">
-        <div class="item-wrapper normal">
-            <c:forEach var="item" items="${catelogGoods2}">
-                <div class="card col">
-                    <a href="<%=basePath%>goods/goodsId/${item.goods.id}">
-                        <div class="card-image">
-                            <img src="../../static/upload/${item.images[0].imgUrl}" />
-                        </div>
-                        <div class="card-content item-price"><c:out value="${item.goods.price}"></c:out></div>
-                        <div class="card-content item-name">
-                            <p><c:out value="${item.goods.name}"></c:out></p>
-                        </div>
-                        <div class="card-content item-location">
-                            <p>鲁东大学</p>
-                            <p><c:out value="${item.goods.startTime}"></c:out></p>
-                        </div>
-                    </a>
-                </div>
-            </c:forEach>
+        <div class="item-wrapper normal" th:each="item : ${catelogGoods2}">
+            <div class="card col">
+                <a th:href="@{/goods/goodsId/${item.goods.id}}">
+                    <div class="card-image">
+                        <img th:src="@{/upload/${item.images[0].imgUrl}}" />
+                    </div>
+                    <div class="card-content item-price" th:text="${item.goods.price}"></div>
+                    <div class="card-content item-name">
+                        <p th:text="${item.goods.name}"></p>
+                    </div>
+                    <div class="card-content item-location">
+                        <p>广东财经大学</p>
+                        <p th:text="${item.goods.startTime}"></p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
+    <!--
+        时间：2018/01/05 15:59:28
+        描述：电器日用
+    -->
     <div class="index-title">
         <a href="">电器日用</a>
-        <hr class="hr1">
-        <hr class="hr2">
+        <hr class="hr1" />
+        <hr class="hr2" />
     </div>
     <div class="waterfoo stark-components row">
-        <div class="item-wrapper normal">
-            <c:forEach var="item" items="${catelogGoods3}">
-                <div class="card col">
-                    <a href="<%=basePath%>goods/goodsId/${item.goods.id}">
-                        <div class="card-image">
-                            <img src="../../static/upload/${item.images[0].imgUrl}" />
-                        </div>
-                        <div class="card-content item-price"><c:out value="${item.goods.price}"></c:out></div>
-                        <div class="card-content item-name">
-                            <p><c:out value="${item.goods.name}"></c:out></p>
-                        </div>
-                        <div class="card-content item-location">
-                            <p>鲁东大学</p>
-                            <p><c:out value="${item.goods.startTime}"></c:out></p>
-                        </div>
-                    </a>
-                </div>
-            </c:forEach>
+        <div class="item-wrapper normal" th:each="item : ${catelogGoods3}">
+            <div class="card col">
+                <a th:href="@{/goods/goodsId/${item.goods.id}}">
+                    <div class="card-image">
+                        <img th:src="@{/upload/${item.images[0].imgUrl}}" />
+                    </div>
+                    <div class="card-content item-price" th:text="${item.goods.price}"></div>
+                    <div class="card-content item-name">
+                        <p th:text="${item.goods.name}"></p>
+                    </div>
+                    <div class="card-content item-location">
+                        <p>广东财经大学</p>
+                        <p th:text="${item.goods.startTime}"></p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
+    <!--
+        时间：2018/01/05 16:00:15
+        描述：图书教材
+    -->
     <div class="index-title">
         <a href="">图书教材</a>
-        <hr class="hr1">
-        <hr class="hr2">
+        <hr class="hr1" />
+        <hr class="hr2" />
     </div>
     <div class="waterfoo stark-components row">
-        <div class="item-wrapper normal">
-            <c:forEach var="item" items="${catelogGoods4}">
-                <div class="card col">
-                    <a href="<%=basePath%>goods/goodsId/${item.goods.id}">
-                        <div class="card-image">
-                            <img src="../../static/upload/${item.images[0].imgUrl}" />
-                        </div>
-                        <div class="card-content item-price"><c:out value="${item.goods.price}"></c:out></div>
-                        <div class="card-content item-name">
-                            <p><c:out value="${item.goods.name}"></c:out></p>
-                        </div>
-                        <div class="card-content item-location">
-                            <p>鲁东大学</p>
-                            <p><c:out value="${item.goods.startTime}"></c:out></p>
-                        </div>
-                    </a>
-                </div>
-            </c:forEach>
+        <div class="item-wrapper normal" th:each="item : ${catelogGoods4}">
+            <div class="card col">
+                <a th:href="@{/goods/goodsId/${item.goods.id}}">
+                    <div class="card-image">
+                        <img th:src="@{/upload/${item.images[0].imgUrl}}" />
+                    </div>
+                    <div class="card-content item-price" th:text="${item.goods.price}"></div>
+                    <div class="card-content item-name">
+                        <p th:text="${item.goods.name}"></p>
+                    </div>
+                    <div class="card-content item-location">
+                        <p>广东财经大学</p>
+                        <p th:text="${item.goods.startTime}"></p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
+    <!--
+        时间：2018/01/05 16:03:19
+        描述：美妆衣物
+    -->
     <div class="index-title">
         <a href="">美妆衣物</a>
-        <hr class="hr1">
-        <hr class="hr2">
+        <hr class="hr1" />
+        <hr class="hr2" />
     </div>
     <div class="waterfoo stark-components row">
-        <div class="item-wrapper normal">
-            <c:forEach var="item" items="${catelogGoods5}">
-                <div class="card col">
-                    <a href="<%=basePath%>goods/goodsId/${item.goods.id}">
-                        <div class="card-image">
-                            <img src="../../static/upload/${item.images[0].imgUrl}" />
-                        </div>
-                        <div class="card-content item-price"><c:out value="${item.goods.price}"></c:out></div>
-                        <div class="card-content item-name">
-                            <p><c:out value="${item.goods.name}"></c:out></p>
-                        </div>
-                        <div class="card-content item-location">
-                            <p>鲁东大学</p>
-                            <p><c:out value="${item.goods.startTime}"></c:out></p>
-                        </div>
-                    </a>
-                </div>
-            </c:forEach>
+        <div class="item-wrapper normal" th:each="item : ${catelogGoods5}">
+            <div class="card col">
+                <a th:href="@{/goods/goodsId/${item.goods.id}}">
+                    <div class="card-image">
+                        <img th:src="@{/upload/${item.images[0].imgUrl}}" />
+                    </div>
+                    <div class="card-content item-price" th:text="${item.goods.price}"></div>
+                    <div class="card-content item-name">
+                        <p th:text="${item.goods.name}"></p>
+                    </div>
+                    <div class="card-content item-location">
+                        <p>广东财经大学</p>
+                        <p th:text="${item.goods.startTime}"></p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
+    <!--
+        时间：2018/01/05 16:06:57
+        描述：运动棋牌
+    -->
     <div class="index-title">
         <a href="">运动棋牌</a>
-        <hr class="hr1">
-        <hr class="hr2">
+        <hr class="hr1" />
+        <hr class="hr2" />
     </div>
     <div class="waterfoo stark-components row">
-        <div class="item-wrapper normal">
-            <c:forEach var="item" items="${catelogGoods6}">
-                <div class="card col">
-                    <a href="<%=basePath%>goods/goodsId/${item.goods.id}">
-                        <div class="card-image">
-                            <img src="../../static/upload/${item.images[0].imgUrl}" />
-                        </div>
-                        <div class="card-content item-price"><c:out value="${item.goods.price}"></c:out></div>
-                        <div class="card-content item-name">
-                            <p><c:out value="${item.goods.name}"></c:out></p>
-                        </div>
-                        <div class="card-content item-location">
-                            <p>鲁东大学</p>
-                            <p><c:out value="${item.goods.startTime}"></c:out></p>
-                        </div>
-                    </a>
-                </div>
-            </c:forEach>
+        <div class="item-wrapper normal" th:each="item : ${catelogGoods6}">
+            <div class="card col">
+                <a th:href="@{/goods/goodsId/${item.goods.id}}">
+                    <div class="card-image">
+                        <img th:src="@{/upload/${item.images[0].imgUrl}}" />
+                    </div>
+                    <div class="card-content item-price" th:text="${item.goods.price}"></div>
+                    <div class="card-content item-name">
+                        <p th:text="${item.goods.name}"></p>
+                    </div>
+                    <div class="card-content item-location">
+                        <p>广东财经大学</p>
+                        <p th:text="${item.goods.startTime}"></p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
+    <!--
+        时间：2018/01/05 16:10:50
+        描述：票券小物
+    -->
     <div class="index-title">
         <a href="">票券小物</a>
-        <hr class="hr1">
-        <hr class="hr2">
+        <hr class="hr1" />
+        <hr class="hr2" />
     </div>
     <div class="waterfoo stark-components row">
-        <div class="item-wrapper normal">
-            <c:forEach var="item" items="${catelogGoods7}">
-                <div class="card col">
-                    <a href="<%=basePath%>goods/goodsId/${item.goods.id}">
-                        <div class="card-image">
-                            <img src="../../static/upload/${item.images[0].imgUrl}" />
-                        </div>
-                        <div class="card-content item-price"><c:out value="${item.goods.price}"></c:out></div>
-                        <div class="card-content item-name">
-                            <p><c:out value="${item.goods.name}"></c:out></p>
-                        </div>
-                        <div class="card-content item-location">
-                            <p>鲁东大学</p>
-                            <p><c:out value="${item.goods.startTime}"></c:out></p>
-                        </div>
-                    </a>
-                </div>
-            </c:forEach>
+        <div class="item-wrapper normal" th:each="item : ${catelogGoods7}">
+            <div class="card col">
+                <a th:href="@{/goods/goodsId/${item.goods.id}}">
+                    <div class="card-image">
+                        <img th:src="@{/upload/${item.images[0].imgUrl}}" />
+                    </div>
+                    <div class="card-content item-price" th:text="${item.goods.price}"></div>
+                    <div class="card-content item-name">
+                        <p th:text="${item.goods.name}"></p>
+                    </div>
+                    <div class="card-content item-location">
+                        <p>广东财经大学</p>
+                        <p th:text="${item.goods.startTime}"></p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-    -->
 </div>
 </body>
 </html>
