@@ -329,60 +329,34 @@
             </div>
         </div>
     </div>
-    <!--<div class="waterfoo stark-components row">-->
-        <!--<div class="item-wrapper normal">-->
-            <!--<c:forEach var="item" items="${catelogGoods1}">-->
-                <!--<div class="card col">-->
-                    <!--<a href="<%=basePath%>goods/goodsId/${item.goods.id}">-->
-                        <!--<div class="card-image">-->
-                            <!--<img src="../../static/upload/${item.images[0].imgUrl}" />-->
-                        <!--</div>-->
-                        <!--<div class="card-content item-price"><c:out value="${item.goods.price}"></c:out></div>-->
-                        <!--<div class="card-content item-name">-->
-                            <!--<p><c:out value="${item.goods.name}"></c:out></p>-->
-                        <!--</div>-->
-                        <!--<div class="card-content item-location">-->
-                            <!--<p>鲁东大学</p>-->
-                            <!--<p><c:out value="${item.goods.startTime}"></c:out></p>-->
-                        <!--</div>-->
-                    <!--</a>-->
-                <!--</div>-->
-            <!--</c:forEach>-->
-        <!--</div>-->
-    <!--</div>-->
     <!--
-        作者：hlk_1135@outlook.com
-        时间：2017-05-05
+        时间：2018/01/05 15:19:36
         描述：闲置数码
     -->
-<!--
     <div class="index-title">
         <a href="">闲置数码</a>
-        <hr class="hr1">
-        <hr class="hr2">
+        <hr class="hr1" />
+        <hr class="hr2" />
     </div>
     <div class="waterfoo stark-components row">
-        <div class="item-wrapper normal">
-            <c:forEach var="item" items="${catelogGoods1}">
-                <div class="card col">
-                    <a href="<%=basePath%>goods/goodsId/${item.goods.id}">
-                        <div class="card-image">
-                            <img src="../../static/upload/${item.images[0].imgUrl}" />
-                        </div>
-                        <div class="card-content item-price"><c:out value="${item.goods.price}"></c:out></div>
-                        <div class="card-content item-name">
-                            <p><c:out value="${item.goods.name}"></c:out></p>
-                        </div>
-                        <div class="card-content item-location">
-                            <p>鲁东大学</p>
-                            <p><c:out value="${item.goods.startTime}"></c:out></p>
-                        </div>
-                    </a>
-                </div>
-            </c:forEach>
+        <div class="item-wrapper normal" th:each="item : ${catelogGoods1}">
+            <div class="card col">
+                <a th:href="@{/goods/goodsId/${item.goods.id}}">
+                    <div class="card-image">
+                        <img th:src="@{/upload/${item.images[0].imgUrl}}" />
+                    </div>
+                    <div class="card-content item-price" th:text="${item.goods.price}"></div>
+                    <div class="card-content item-name">
+                        <p th:text="${item.goods.name}"></p>
+                    </div>
+                    <div class="card-content item-location">
+                        <p>广东财经大学</p>
+                        <p th:text="${item.goods.startTime}"></p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-    -->
     <!--
         作者：hlk_1135@outlook.com
         时间：2017-05-05
