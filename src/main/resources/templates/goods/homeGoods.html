@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>广财大二手工坊</title>
+    <link rel="shortcut icon" th:href="@{/img/gdufe_logo.jpg}" type="image/x-icon" />
     <link rel="stylesheet" th:href="@{/css/index.css}" />
     <script type="text/javascript" th:src="@{/js/jquery.js}" ></script>
     <script type="text/javascript" th:src="@{/js/materialize.min.js}" ></script>
@@ -266,7 +267,7 @@
     <div class="info">
         <a href="" target="_blank">关于我们</a><em>-</em>
         <a href="">联系我们</a>
-        <p>©2017 GDUFE</p>
+        <p>©2018 GDUFE</p>
     </div>
 </div>
 <!--
@@ -302,38 +303,54 @@
         </div>
     </div>
     <!--
-        作者：hlk_1135@outlook.com
-        时间：2017-05-05
+        时间：2018/01/05 11:17:51
         描述：最新发布
     -->
-<!--
     <div class="index-title">
         <a href="">最新发布</a>
-        <hr class="hr1">
-        <hr class="hr2">
+        <hr class="hr1" />
+        <hr class="hr2" />
     </div>
     <div class="waterfoo stark-components row">
-        <div class="item-wrapper normal">
-            <c:forEach var="item" items="${catelogGoods1}">
-                <div class="card col">
-                    <a href="<%=basePath%>goods/goodsId/${item.goods.id}">
-                        <div class="card-image">
-                            <img src="../../static/upload/${item.images[0].imgUrl}" />
-                        </div>
-                        <div class="card-content item-price"><c:out value="${item.goods.price}"></c:out></div>
-                        <div class="card-content item-name">
-                            <p><c:out value="${item.goods.name}"></c:out></p>
-                        </div>
-                        <div class="card-content item-location">
-                            <p>鲁东大学</p>
-                            <p><c:out value="${item.goods.startTime}"></c:out></p>
-                        </div>
-                    </a>
-                </div>
-            </c:forEach>
+        <div class="item-wrapper normal" th:each="item : ${catelogGoods1}">
+            <div class="card col">
+                <a th:href="@{/goods/goodsId/${item.goods.id}}">
+                    <div class="card-image">
+                        <img th:src="@{/upload/${item.images[0].imgUrl}}" />
+                    </div>
+                    <div class="card-content item-price" th:text="${item.goods.price}"></div>
+                    <div class="card-content item-name">
+                        <p th:text="${item.goods.name}"></p>
+                    </div>
+                    <div class="card-content item-location">
+                        <p>广东财经大学</p>
+                        <p th:text="${item.goods.startTime}"></p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-    -->
+    <!--<div class="waterfoo stark-components row">-->
+        <!--<div class="item-wrapper normal">-->
+            <!--<c:forEach var="item" items="${catelogGoods1}">-->
+                <!--<div class="card col">-->
+                    <!--<a href="<%=basePath%>goods/goodsId/${item.goods.id}">-->
+                        <!--<div class="card-image">-->
+                            <!--<img src="../../static/upload/${item.images[0].imgUrl}" />-->
+                        <!--</div>-->
+                        <!--<div class="card-content item-price"><c:out value="${item.goods.price}"></c:out></div>-->
+                        <!--<div class="card-content item-name">-->
+                            <!--<p><c:out value="${item.goods.name}"></c:out></p>-->
+                        <!--</div>-->
+                        <!--<div class="card-content item-location">-->
+                            <!--<p>鲁东大学</p>-->
+                            <!--<p><c:out value="${item.goods.startTime}"></c:out></p>-->
+                        <!--</div>-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</c:forEach>-->
+        <!--</div>-->
+    <!--</div>-->
     <!--
         作者：hlk_1135@outlook.com
         时间：2017-05-05
