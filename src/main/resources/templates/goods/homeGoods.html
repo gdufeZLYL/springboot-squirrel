@@ -39,6 +39,7 @@
             }
         }
     </script>
+    <!-- TODO::IDEA关于thymeleaf的支持红色波浪线 -->
 <body ng-view="ng-view">
 <!--
     时间：2018/01/04 21:59:08
@@ -95,7 +96,10 @@
             </ul>
             <ul class="right" th:if="${cur_user == null}">
                 <li class="publish-btn">
-                    <button ng-click="showLogin()" data-position="bottom" data-delay="50"
+                    <!--<button ng-click="showLogin()" data-position="bottom" data-delay="50"-->
+                            <!--data-tooltip="需要先登录哦！" class="red lighten-1 waves-effect waves-light btn" data-tooltip-id="510d3084-e666-f82f-3655-5eae4304a83a"	>-->
+                        <!--我要发布</button>-->
+                    <button th:onclick="'showLogin()'" data-position="bottom" data-delay="50"
                             data-tooltip="需要先登录哦！" class="red lighten-1 waves-effect waves-light btn" data-tooltip-id="510d3084-e666-f82f-3655-5eae4304a83a"	>
                         我要发布</button>
                 </li>
