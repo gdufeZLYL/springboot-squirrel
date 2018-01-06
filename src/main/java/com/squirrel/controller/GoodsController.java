@@ -111,6 +111,8 @@ public class GoodsController {
             goodsExtendList.add(i,goodsExtend);
         }
         ModelAndView modelAndView = new ModelAndView();
+        User cur_user = (User) request.getSession().getAttribute("cur_user");
+        modelAndView.addObject("cur_user", cur_user);
         modelAndView.addObject("goodsExtendList", goodsExtendList);
         modelAndView.addObject("catelog", catelog);
         modelAndView.addObject("search",str);
@@ -125,7 +127,7 @@ public class GoodsController {
      * @throws Exception
      */
     @RequestMapping(value = "/goodsId/{id}")
-    public ModelAndView getGoodsById(@PathVariable("id") Integer id,@RequestParam(value = "str",required = false) String str) throws Exception {
+    public ModelAndView getGoodsById(HttpServletRequest request, @PathVariable("id") Integer id,@RequestParam(value = "str",required = false) String str) throws Exception {
         Goods goods = goodsService.getGoodsByPrimaryKey(id);
         User seller = userService.selectByPrimaryKey(goods.getUserId());
         Catelog catelog = catelogService.selectByPrimaryKey(goods.getCatelogId());
@@ -134,6 +136,8 @@ public class GoodsController {
         goodsExtend.setGoods(goods);
         goodsExtend.setImages(imageList);
         ModelAndView modelAndView = new ModelAndView();
+        User cur_user = (User) request.getSession().getAttribute("cur_user");
+        modelAndView.addObject("cur_user", cur_user);
         modelAndView.addObject("goodsExtend", goodsExtend);
         modelAndView.addObject("seller", seller);
         modelAndView.addObject("search",str);
