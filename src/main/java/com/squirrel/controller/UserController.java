@@ -169,6 +169,7 @@ public class UserController {
             goodsAndImage.add(i, goodsExtend);
         }
         ModelAndView mv = new ModelAndView();
+        mv.addObject("cur_user", cur_user);
         mv.addObject("goodsAndImage",goodsAndImage);
         mv.setViewName("/user/goods");
         return mv;
