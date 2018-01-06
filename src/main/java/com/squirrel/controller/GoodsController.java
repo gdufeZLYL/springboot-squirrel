@@ -8,6 +8,7 @@ import com.squirrel.service.UserService;
 import com.squirrel.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -229,12 +230,15 @@ public class GoodsController {
      * @throws Exception
      */
     @RequestMapping(value = "/publishGoods")
-    public String publishGoods(HttpServletRequest request) {
+    public String publishGoods(HttpServletRequest request, Model model) {
         //可以校验用户是否登录
         User cur_user = (User)request.getSession().getAttribute("cur_user");
         if(cur_user == null) {
-            return "/goods/homeGoods";
+//            model.addAttribute("cur_user", cur_user);
+//            return "/goods/homeGoods";
+            return "redirect:/goods/homeGoods";
         } else {
+            model.addAttribute("cur_user", cur_user);
             return "/goods/pubGoods";
         }
     }
