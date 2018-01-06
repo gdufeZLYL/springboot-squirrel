@@ -28,19 +28,19 @@
     <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
         select
         *
-        from goods
+        from t_shop_goods
         where id = #{id,jdbcType=INTEGER}
         <include refid="Factor"></include>
     </select>
     <select id="searchGoods" resultMap="ResultMapWithBLOBs" parameterType="String" >
         select
         *
-        from goods
+        from t_shop_goods
         where name like concat('%',#{name},'%') OR describle like concat('%',#{describle},'%')
         <include refid="Factor"></include>
     </select>
     <select id="selectByCatelog" resultMap="ResultMapWithBLOBs">
-        select * from goods
+        select * from t_shop_goods
         where catelog_id = #{catelog_id,jdbcType=INTEGER}
         <if test="name != null" >
             AND (name like concat('%',#{name},'%')
@@ -51,26 +51,26 @@
         <include refid="Factor"></include>
     </select>
     <select id="selectAllGoods" resultMap="ResultMapWithBLOBs">
-        select * from goods
+        select * from t_shop_goods
     </select>
     <select id="getGoodsByUserId" resultMap="ResultMapWithBLOBs">
-        select * from goods where user_id = #{user_id,jdbcType=INTEGER}
+        select * from t_shop_goods where user_id = #{user_id,jdbcType=INTEGER}
     </select>
 
     <select id="selectByCatelogOrderByDate" resultMap="ResultMapWithBLOBs">
-        select * from goods
+        select * from t_shop_goods
         where catelog_id = #{catelogId,jdbcType=INTEGER}
         order by polish_time DESC
         limit #{limit,jdbcType=INTEGER}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-        delete from goods
+        delete from t_shop_goods
         where id = #{id,jdbcType=INTEGER}
     </delete>
 
     <insert id="insert" parameterType="com.squirrel.pojo.Goods" useGeneratedKeys="true" keyProperty="id">
-        insert into goods (id, catelog_id, user_id,
+        insert into t_shop_goods (id, catelog_id, user_id,
         name, price, real_price, start_time,
         end_time, polish_time, commet_num, describle)
         values (#{id,jdbcType=INTEGER}, #{catelogId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
@@ -79,7 +79,7 @@
         )
     </insert>
     <insert id="insertSelective" parameterType="com.squirrel.pojo.Goods" >
-        insert into goods
+        insert into t_shop_goods
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
                 id,
@@ -152,7 +152,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.squirrel.pojo.Goods" >
-        update goods
+        update t_shop_goods
         <set >
             <if test="catelogId != null" >
                 catelog_id = #{catelogId,jdbcType=INTEGER},
@@ -188,7 +188,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.squirrel.pojo.Goods" >
-        update goods
+        update t_shop_goods
         set catelog_id = #{catelogId,jdbcType=INTEGER},
         user_id = #{userId,jdbcType=INTEGER},
         name = #{name,jdbcType=VARCHAR},
@@ -202,7 +202,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.squirrel.pojo.Goods" >
-        update goods
+        update t_shop_goods
         set catelog_id = #{catelogId,jdbcType=INTEGER},
         user_id = #{userId,jdbcType=INTEGER},
         name = #{name,jdbcType=VARCHAR},

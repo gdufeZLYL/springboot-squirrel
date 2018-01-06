@@ -21,21 +21,21 @@
         <include refid="Base_Column_List" />
         ,
         <include refid="Blob_Column_List" />
-        from comments
+        from t_shop_comments
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-        delete from comments
+        delete from t_shop_comments
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.squirrel.pojo.Comments" >
-        insert into comments (id, user_id, goods_id,
+        insert into t_shop_comments (id, user_id, goods_id,
         create_at, content)
         values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER},
         #{createAt,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.squirrel.pojo.Comments" >
-        insert into comments
+        insert into t_shop_comments
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
                 id,
@@ -72,7 +72,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.squirrel.pojo.Comments" >
-        update comments
+        update t_shop_comments
         <set >
             <if test="userId != null" >
                 user_id = #{userId,jdbcType=INTEGER},
@@ -90,7 +90,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.squirrel.pojo.Comments" >
-        update comments
+        update t_shop_comments
         set user_id = #{userId,jdbcType=INTEGER},
         goods_id = #{goodsId,jdbcType=INTEGER},
         create_at = #{createAt,jdbcType=VARCHAR},
@@ -98,7 +98,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.squirrel.pojo.Comments" >
-        update comments
+        update t_shop_comments
         set user_id = #{userId,jdbcType=INTEGER},
         goods_id = #{goodsId,jdbcType=INTEGER},
         create_at = #{createAt,jdbcType=VARCHAR}

@@ -19,28 +19,28 @@
         <include refid="Base_Column_List" />
         ,
         <include refid="Blob_Column_List" />
-        from image
+        from t_shop_image
         where id = #{id,jdbcType=INTEGER}
     </select>
     <select id="selectByGoodsPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
-        select * from image where goods_id = #{goodsId,jdbcType=INTEGER}
+        select * from t_shop_image where goods_id = #{goodsId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-        delete from image
+        delete from t_shop_image
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteImagesByGoodsPrimaryKey" parameterType="java.lang.Integer">
-        delete from image
+        delete from t_shop_image
         where goods_id = #{goodsId,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.squirrel.pojo.Image" >
-        insert into image (id, goods_id, img_url
+    <insert id="insert" parameterType="com.squirrel.pojo.t_shop_image" >
+        insert into t_shop_image (id, goods_id, img_url
         )
         values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{imgUrl,jdbcType=LONGVARCHAR}
         )
     </insert>
     <insert id="insertSelective" parameterType="com.squirrel.pojo.Image" >
-        insert into image
+        insert into t_shop_image
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
                 id,
@@ -65,7 +65,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.squirrel.pojo.Image" >
-        update image
+        update t_shop_image
         <set >
             <if test="goodsId != null" >
                 goods_id = #{goodsId,jdbcType=INTEGER},
@@ -77,13 +77,13 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.squirrel.pojo.Image" >
-        update image
+        update t_shop_image
         set goods_id = #{goodsId,jdbcType=INTEGER},
         img_url = #{imgUrl,jdbcType=LONGVARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.squirrel.pojo.Image" >
-        update image
+        update t_shop_image
         set goods_id = #{goodsId,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>

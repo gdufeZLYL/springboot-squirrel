@@ -22,15 +22,15 @@
         <include refid="Base_Column_List" />
         ,
         <include refid="Blob_Column_List" />
-        from reply
+        from t_shop_reply
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-        delete from reply
+        delete from t_shop_reply
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.squirrel.pojo.Reply" >
-        insert into reply (id, user_id, atuser_id,
+        insert into t_shop_reply (id, user_id, atuser_id,
         commet_id, create_at, content
         )
         values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{atuserId,jdbcType=INTEGER},
@@ -38,7 +38,7 @@
         )
     </insert>
     <insert id="insertSelective" parameterType="com.squirrel.pojo.Reply" >
-        insert into reply
+        insert into t_shop_reply
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
                 id,
@@ -81,7 +81,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.squirrel.pojo.Reply" >
-        update reply
+        update t_shop_reply
         <set >
             <if test="userId != null" >
                 user_id = #{userId,jdbcType=INTEGER},
@@ -102,7 +102,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.squirrel.pojo.Reply" >
-        update reply
+        update t_shop_reply
         set user_id = #{userId,jdbcType=INTEGER},
         atuser_id = #{atuserId,jdbcType=INTEGER},
         commet_id = #{commetId,jdbcType=INTEGER},
@@ -111,7 +111,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.squirrel.pojo.Reply" >
-        update reply
+        update t_shop_reply
         set user_id = #{userId,jdbcType=INTEGER},
         atuser_id = #{atuserId,jdbcType=INTEGER},
         commet_id = #{commetId,jdbcType=INTEGER},

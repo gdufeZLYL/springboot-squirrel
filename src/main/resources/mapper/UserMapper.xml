@@ -19,11 +19,11 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
         <include refid="Base_Column_List" />
-        from user
+        from t_shop_user
         where id = #{id,jdbcType=INTEGER}
     </select>
     <select id="getUserList" resultMap="BaseResultMap" parameterType="String">
-        select <include refid="Base_Column_List" /> from user where 1=1
+        select <include refid="Base_Column_List" /> from t_shop_user where 1=1
         <!--<if test="username != null">-->
         <!--<![CDATA[-->
         <!--and username like CONCAT('%',#{username,jdbcType=VARCHAR}, '%')-->
@@ -34,15 +34,15 @@
     <select id="getUserByPhone" resultMap="BaseResultMap" parameterType="String" >
         select
         <include refid="Base_Column_List" />
-        from user
+        from t_shop_user
         where phone = #{phone,jdbcType=CHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-        delete from user
+        delete from t_shop_user
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.squirrel.pojo.User" >
-        insert into user (id, phone, username,
+        insert into t_shop_user (id, phone, username,
         password, QQ, create_at,
         goods_num, power, last_login,
         status)
@@ -52,7 +52,7 @@
         #{status,jdbcType=TINYINT})
     </insert>
     <insert id="insertSelective" parameterType="com.squirrel.pojo.User" >
-        insert into user
+        insert into t_shop_user
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
                 id,
@@ -119,7 +119,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.squirrel.pojo.User" >
-        update user
+        update t_shop_user
         <set >
             <if test="phone != null" >
                 phone = #{phone,jdbcType=CHAR},
@@ -152,7 +152,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.squirrel.pojo.User" >
-        update user
+        update t_shop_user
         set phone = #{phone,jdbcType=CHAR},
         username = #{username,jdbcType=VARCHAR},
         password = #{password,jdbcType=CHAR},
@@ -165,7 +165,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateGoodsNum" parameterType="Integer" >
-        update user set
+        update t_shop_user set
         goods_num = #{goodsNum,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>

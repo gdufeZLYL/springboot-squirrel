@@ -13,27 +13,27 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
         <include refid="Base_Column_List" />
-        from catelog
+        from t_shop_catelog
         where id = #{id,jdbcType=INTEGER}
     </select>
     <select id="getAllCatelog" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
-        from catelog
+        from t_shop_catelog
         where status = #{1,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-        delete from catelog
+        delete from t_shop_catelog
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.squirrel.pojo.Catelog" >
-        insert into catelog (id, name, number,
+        insert into t_shop_catelog (id, name, number,
         status)
         values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER},
         #{status,jdbcType=TINYINT})
     </insert>
     <insert id="insertSelective" parameterType="com.squirrel.pojo.Catelog" >
-        insert into catelog
+        insert into t_shop_catelog
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
                 id,
@@ -64,7 +64,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.squirrel.pojo.Catelog" >
-        update catelog
+        update t_shop_catelog
         <set >
             <if test="name != null" >
                 name = #{name,jdbcType=VARCHAR},
@@ -79,14 +79,14 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.squirrel.pojo.Catelog" >
-        update catelog
+        update t_shop_catelog
         set name = #{name,jdbcType=VARCHAR},
         number = #{number,jdbcType=INTEGER},
         status = #{status,jdbcType=TINYINT}
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateCatelogNum" parameterType="Integer" >
-        update catelog
+        update t_shop_catelog
         set number = #{number,jdbcType=INTEGER} where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>

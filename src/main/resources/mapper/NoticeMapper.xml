@@ -21,21 +21,21 @@
         <include refid="Base_Column_List" />
         ,
         <include refid="Blob_Column_List" />
-        from notice
+        from t_shop_notice
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-        delete from notice
+        delete from t_shop_notice
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.squirrel.pojo.Notice" >
-        insert into notice (id, user_id, create_at,
+        insert into t_shop_notice (id, user_id, create_at,
         status, context)
         values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{createAt,jdbcType=VARCHAR},
         #{status,jdbcType=TINYINT}, #{context,jdbcType=LONGVARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.squirrel.pojo.Notice" >
-        insert into notice
+        insert into t_shop_notice
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
                 id,
@@ -72,7 +72,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.squirrel.pojo.Notice" >
-        update notice
+        update t_shop_notice
         <set >
             <if test="userId != null" >
                 user_id = #{userId,jdbcType=INTEGER},
@@ -90,7 +90,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.squirrel.pojo.Notice" >
-        update notice
+        update t_shop_notice
         set user_id = #{userId,jdbcType=INTEGER},
         create_at = #{createAt,jdbcType=VARCHAR},
         status = #{status,jdbcType=TINYINT},
@@ -98,7 +98,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.squirrel.pojo.Notice" >
-        update notice
+        update t_shop_notice
         set user_id = #{userId,jdbcType=INTEGER},
         create_at = #{createAt,jdbcType=VARCHAR},
         status = #{status,jdbcType=TINYINT}
