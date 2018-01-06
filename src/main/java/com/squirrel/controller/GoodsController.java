@@ -71,7 +71,7 @@ public class GoodsController {
     }
 
     @RequestMapping(value = "/search")
-    public ModelAndView searchGoods(@RequestParam(value = "str",required = false) String str)throws Exception {
+    public ModelAndView searchGoods(HttpServletRequest request, @RequestParam(value = "str",required = false) String str)throws Exception {
         List<Goods> goodsList = goodsService.searchGoods(str,str);
         List<GoodsExtend> goodsExtendList = new ArrayList<GoodsExtend>();
         for(int i = 0;i<goodsList.size();i++) {
@@ -83,6 +83,8 @@ public class GoodsController {
             goodsExtendList.add(i,goodsExtend);
         }
         ModelAndView modelAndView = new ModelAndView();
+        User cur_user = (User) request.getSession().getAttribute("cur_user");
+        modelAndView.addObject("cur_user", cur_user);
         modelAndView.addObject("goodsExtendList", goodsExtendList);
         modelAndView.addObject("search",str);
         modelAndView.setViewName("/goods/searchGoods");
