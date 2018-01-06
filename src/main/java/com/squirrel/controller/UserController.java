@@ -142,7 +142,9 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/basic")
-    public String basic() {
+    public String basic(HttpServletRequest request, Model model) {
+        User cur_user = (User) request.getSession().getAttribute("cur_user");
+        model.addAttribute("cur_user", cur_user);
         return "/user/basic";
     }
 
