@@ -155,7 +155,7 @@ public class GoodsController {
      * @throws Exception
      */
     @RequestMapping(value = "/editGoods/{id}")
-    public ModelAndView editGoods(@PathVariable("id") Integer id) throws Exception {
+    public ModelAndView editGoods(HttpServletRequest request, @PathVariable("id") Integer id) throws Exception {
 
         Goods goods = goodsService.getGoodsByPrimaryKey(id);
         List<Image> imageList = imageService.getImagesByGoodsPrimaryKey(id);
@@ -163,6 +163,8 @@ public class GoodsController {
         goodsExtend.setGoods(goods);
         goodsExtend.setImages(imageList);
         ModelAndView modelAndView = new ModelAndView();
+        User cur_user = (User) request.getSession().getAttribute("cur_user");
+        modelAndView.addObject("cur_user", cur_user);
         // 将商品信息添加到model
         modelAndView.addObject("goodsExtend", goodsExtend);
         modelAndView.setViewName("/goods/editGoods");
