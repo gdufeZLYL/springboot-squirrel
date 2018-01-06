@@ -48,9 +48,22 @@
     <nav class="white nav1">
         <div class="nav-wrapper">
             <a th:href="@{/goods/homeGoods}" class="logo">
-                <em class="em1">广财大</em>
+                <!--<em class="em1">广财大</em>-->
+                <em class="em1">
+                    <span style="color: #4b82c3;">广</span>
+                    <span style="color: #ffd51f;">财</span>
+                    <span style="color: #b02b1a;">大</span>
+                </em>
                 <em class="em2">二手工坊</em>
-                <em class="em3">gdufe.market</em>
+                <em class="em3">
+                    <span style="color: #d80000;">g</span>
+                    <span style="color: #48bdff;">d</span>
+                    <span style="color: #ea83ee;">u</span>
+                    <span style="color: #50dd5a;">f</span>
+                    <span style="color: #ee9946;">e</span>
+                    .market
+                </em>
+                <!--<em class="em3">gdufe.market</em>-->
             </a>
             <div class="nav-wrapper search-bar">
                 <form ng-submit="search()" class="ng-pristine ng-invalid ng-invalid-required" th:action="@{/goods/search}">
