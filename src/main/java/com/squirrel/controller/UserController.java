@@ -10,6 +10,7 @@ import com.squirrel.service.UserService;
 import com.squirrel.util.DateUtil;
 import com.squirrel.util.MD5;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -130,7 +131,9 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/home")
-    public String home() {
+    public String home(HttpServletRequest request, Model model) {
+        User cur_user = (User) request.getSession().getAttribute("cur_user");
+        model.addAttribute("cur_user", cur_user);
         return "/user/home";
     }
 
