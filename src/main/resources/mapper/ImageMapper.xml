@@ -33,7 +33,7 @@
         delete from t_shop_image
         where goods_id = #{goodsId,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.squirrel.pojo.t_shop_image" >
+    <insert id="insert" parameterType="com.squirrel.pojo.Image" >
         insert into t_shop_image (id, goods_id, img_url
         )
         values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{imgUrl,jdbcType=LONGVARCHAR}
