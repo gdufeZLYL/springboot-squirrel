@@ -1,11 +1,14 @@
 package com.squirrel.controller;
 
+import com.squirrel.common.GgeeConst;
 import com.squirrel.pojo.*;
 import com.squirrel.service.CatelogService;
 import com.squirrel.service.GoodsService;
 import com.squirrel.service.ImageService;
 import com.squirrel.service.UserService;
 import com.squirrel.util.DateUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +28,8 @@ import java.util.*;
 @Controller
 @RequestMapping(value = "/goods")
 public class GoodsController {
+
+    private static Log LOG = LogFactory.getLog(GoodsController.class);
 
     @Autowired
     private GoodsService goodsService;
@@ -285,13 +290,16 @@ public class GoodsController {
         //原始名称
         String oldFileName = myfile.getOriginalFilename(); //获取上传文件的原名
         //存储图片的物理路径
-        String file_path = session.getServletContext().getRealPath("upload");
+        //String file_path = session.getServletContext().getRealPath("upload");
+        String file_path = GgeeConst.UPLOAD_FILE_IMAGE_PATH;
+        LOG.info("file_path = " + file_path);
         //上传图片
         if(myfile!=null && oldFileName!=null && oldFileName.length()>0){
             //新的图片名称
             String newFileName = UUID.randomUUID() + oldFileName.substring(oldFileName.lastIndexOf("."));
             //新图片
-            File newFile = new File(file_path+"/"+newFileName);
+            //File newFile = new File(file_path+"/"+newFileName);
+            File newFile = new File(file_path+newFileName);
             //将内存中的数据写入磁盘
             myfile.transferTo(newFile);
             //将新图片名称返回到前端

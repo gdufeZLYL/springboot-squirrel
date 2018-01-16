@@ -147,7 +147,7 @@
                                 <div class="col-sm-6 col-sm-offset-1">
                                     <div class="form-group">
                                         <div class="col-sm-10">
-                                            <input type="file" name="myfile" data-ref="imgUrl" class="col-sm-10 myfile" value=""/>
+                                            <input type="file" id="myfile" name="myfile" data-ref="imgUrl" class="col-sm-10 myfile" value=""/>
                                             <input type="hidden" name="imgUrl" value="" />
                                         </div>
                                     </div>
@@ -228,7 +228,7 @@
         maxFileCount: 3, //表示允许同时上传的最大文件个数
         enctype: 'multipart/form-data',
         validateInitialCount:true,
-        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        previewFileIcon: '<i class="glyphicon glyphicon-king"></i>',
         msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
         allowedFileTypes: ['image'],//配置允许文件上传的类型
         allowedPreviewTypes : [ 'image' ],//配置所有的被预览文件类型
