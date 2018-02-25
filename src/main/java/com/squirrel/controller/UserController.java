@@ -1,5 +1,8 @@
 package com.squirrel.controller;
 
+import com.squirrel.common.GgeeConst;
+import com.squirrel.dto.AjaxResult;
+import com.squirrel.exception.GgeeWebError;
 import com.squirrel.pojo.Goods;
 import com.squirrel.pojo.GoodsExtend;
 import com.squirrel.pojo.Image;
@@ -9,11 +12,12 @@ import com.squirrel.service.ImageService;
 import com.squirrel.service.UserService;
 import com.squirrel.util.DateUtil;
 import com.squirrel.util.MD5;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -25,6 +29,8 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
+
+    private static Log LOG = LogFactory.getLog(UserController.class);
 
     @Resource
     private UserService userService;
@@ -43,12 +49,13 @@ public class UserController {
         String url=request.getHeader("Referer");
         User user=userService.getUserByPhone(user1.getPhone());
         if(user==null) {//检测该用户是否已经注册
-            String t = DateUtil.getNowDate();
+            String t = DateUtil.getNowTime();
             //对密码进行MD5加密
             String str = MD5.md5(user1.getPassword());
             user1.setCreateAt(t);//创建开始时间
             user1.setPassword(str);
             user1.setGoodsNum(0);
+            user1.setStatus((byte)0);
             userService.addUser(user1);
         }
         return "redirect:"+url;
@@ -66,7 +73,7 @@ public class UserController {
         User cur_user = userService.getUserByPhone(user.getPhone());
         String url=request.getHeader("Referer");
 //        ModelAndView modelAndView = new ModelAndView();
-        if(cur_user != null) {
+        if(cur_user != null && cur_user.getStatus() == 0) {
             String pwd = MD5.md5(user.getPassword());
             if(pwd.equals(cur_user.getPassword())) {
                 request.getSession().setAttribute("cur_user",cur_user);
@@ -77,6 +84,104 @@ public class UserController {
             }
         }
         return new ModelAndView("redirect:"+url);
+    }
+
+    /**
+     * API:验证登录
+     */
+    @RequestMapping(value = "/api/login", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxResult login(HttpServletRequest request, HttpServletResponse response) {
+        AjaxResult ajaxResult = new AjaxResult();
+        try {
+            String phone = request.getParameter("phone");
+            String password = request.getParameter("password");
+            User cur_user = userService.getUserByPhone(phone);
+            if(cur_user != null) {
+                String pwd = MD5.md5(password);
+                if(pwd.equals(cur_user.getPassword())) {
+                    request.getSession().setAttribute(GgeeConst.CUR_USER,cur_user);
+                    ajaxResult.setData(cur_user);
+                } else {
+                    return AjaxResult.fixedError(GgeeWebError.WRONG_PASSWORD);
+                }
+            } else {
+                return AjaxResult.fixedError(GgeeWebError.WRONG_USERNAME);
+            }
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            return AjaxResult.fixedError(GgeeWebError.COMMON);
+        }
+        return ajaxResult;
+    }
+
+    /**
+     * API:添加用户
+     */
+    @RequestMapping(value="/api/addUser", method= RequestMethod.POST)
+    @ResponseBody
+    public AjaxResult addUser(@RequestBody User user) {
+        AjaxResult ajaxResult = new AjaxResult();
+        User existUser = userService.getUserByPhone(user.getPhone());
+        if(existUser == null) {//检测该用户是否已经注册
+            String t = DateUtil.getNowTime();
+            //对密码进行MD5加密
+            String str = MD5.md5(user.getPassword());
+            user.setCreateAt(t);//创建开始时间
+            user.setPassword(str);
+            user.setGoodsNum(0);
+            user.setStatus((byte)0);
+            userService.addUser(user);
+            return new AjaxResult().setData(1);
+        }
+        return AjaxResult.fixedError(GgeeWebError.AREADY_EXIST_PHONE);
+    }
+
+    /**
+     * API:更新用户
+     */
+    @RequestMapping(value="/api/updateUser", method= RequestMethod.POST)
+    @ResponseBody
+    public AjaxResult updateUser(@RequestBody User user) {
+        AjaxResult ajaxResult = new AjaxResult();
+        //对密码进行MD5加密
+        String str = MD5.md5(user.getPassword());
+        user.setPassword(str);
+        boolean result = userService.updateUserById(user);
+        return new AjaxResult().setData(result);
+    }
+
+    /**
+     * API:删除用户
+     */
+    @DeleteMapping("/api/deleteUser/{id}")
+    @ResponseBody
+    public AjaxResult deleteUser(@PathVariable int id) {
+        AjaxResult ajaxResult = new AjaxResult();
+        boolean result = userService.deleteUserById(id);
+        return new AjaxResult().setData(result);
+    }
+
+    /**
+     * API:冻结用户
+     */
+    @RequestMapping(value="/api/freezeUser/{id}", method= RequestMethod.POST)
+    @ResponseBody
+    public AjaxResult freezeUser(@PathVariable int id) {
+        AjaxResult ajaxResult = new AjaxResult();
+        boolean result = userService.freezeUser(id);
+        return new AjaxResult().setData(result);
+    }
+
+    /**
+     * API:解冻用户
+     */
+    @RequestMapping(value="/api/unfreezeUser/{id}", method= RequestMethod.POST)
+    @ResponseBody
+    public AjaxResult unfreezeUser(@PathVariable int id) {
+        AjaxResult ajaxResult = new AjaxResult();
+        boolean result = userService.unfreezeUser(id);
+        return new AjaxResult().setData(result);
     }
 
     /**

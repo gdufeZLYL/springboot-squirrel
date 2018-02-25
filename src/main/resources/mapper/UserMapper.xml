@@ -22,14 +22,23 @@
         from t_shop_user
         where id = #{id,jdbcType=INTEGER}
     </select>
+
     <select id="getUserList" resultMap="BaseResultMap" parameterType="String">
         select <include refid="Base_Column_List" /> from t_shop_user where 1=1
+        ORDER BY create_at DESC
         <!--<if test="username != null">-->
         <!--<![CDATA[-->
         <!--and username like CONCAT('%',#{username,jdbcType=VARCHAR}, '%')-->
         <!--]]>-->
         <!--</if>-->
     </select>
+
+    <select id="getCount" resultType="int">
+        select
+          COUNT(1)
+        from t_shop_user
+    </select>
+
     <!--根据手机号查询用户-->
     <select id="getUserByPhone" resultMap="BaseResultMap" parameterType="String" >
         select
@@ -168,5 +177,11 @@
         update t_shop_user set
         goods_num = #{goodsNum,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateStatus" >
+        update t_shop_user set
+        status = #{status}
+        where id = #{id}
     </update>
 </mapper>
