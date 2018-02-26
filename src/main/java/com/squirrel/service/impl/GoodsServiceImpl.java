@@ -1,5 +1,6 @@
 package com.squirrel.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.squirrel.dao.GoodsMapper;
 import com.squirrel.pojo.Goods;
 import com.squirrel.service.GoodsService;
@@ -7,7 +8,10 @@ import com.squirrel.util.DateUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 对商品的操作类（增删改查）
@@ -67,5 +71,41 @@ public class GoodsServiceImpl implements GoodsService {
         List<Goods> goodsList = goodsMapper.getGoodsByUserId(user_id);
         return goodsList;
     }
+
+    @Override
+    public Map<String, Object> getGoodsByCatelogIdAndNameAndDescrible(
+            int pageNum, int pageSize, int catelogId,
+            String name, String describle) {
+        Map<String, Object> data = new HashMap<>();
+        int count = goodsMapper.selectCountByCatelog(catelogId, name, describle);
+        if (count == 0) {
+            data.put("pageNum", 0);
+            data.put("pageSize", 0);
+            data.put("totalPageNum", 1);
+            data.put("totalPageSize", 0);
+            data.put("goodsList", new ArrayList<>());
+            return data;
+        }
+        int totalPageNum = count % pageSize == 0 ? count / pageSize : count / pageSize + 1;
+        if (pageNum > totalPageNum) {
+            data.put("pageNum", 0);
+            data.put("pageSize", 0);
+            data.put("totalPageNum", totalPageNum);
+            data.put("totalPageSize", 0);
+            data.put("goodsList", new ArrayList<>());
+            return data;
+        }
+        //TODO::分页插件bug
+        PageHelper.startPage(pageNum, pageSize);
+        List<Goods> goodsList = goodsMapper.selectByCatelog(catelogId, name, describle);
+        data.put("pageNum", pageNum);
+        data.put("pageSize", pageSize);
+        data.put("totalPageNum", totalPageNum);
+        data.put("totalPageSize", count);
+        data.put("goodsList", goodsList);
+        return data;
+    }
+
+
 
 }

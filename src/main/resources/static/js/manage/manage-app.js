@@ -9,6 +9,9 @@ var app = {
         manageUserListUrl: function () {
             return "/manage/user/list";
         },
+        manageGoodsListUrl: function () {
+            return "/manage/goods/list";
+        },
         checkLoginUrl: function () {
             return "/user/api/login";
         },
@@ -26,6 +29,12 @@ var app = {
         },
         unfreezeUserUrl: function () {
             return "/user/api/unfreezeUser/";
+        },
+        updateGoodsUrl: function () {
+            return "/goods/api/updateGoods";
+        },
+        offGoodsUrl: function () {
+            return "/goods/api/offGoods/";
         },
     },
     /**

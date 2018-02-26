@@ -17,8 +17,14 @@ public interface UserService {
     InputStream getInputStream() throws Exception;
 
     Map<String, Object> getUsers(int pageNum, int pageSize);
+
     boolean updateUserById(User user);
+
     boolean deleteUserById(int id);
+
     boolean freezeUser(int id);
+
     boolean unfreezeUser(int id);
+
+    List<User> getUsersByIds(List<Integer> ids);
 }

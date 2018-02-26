@@ -1,5 +1,8 @@
 package com.squirrel.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Goods {
     private Integer id;
 
@@ -22,6 +25,11 @@ public class Goods {
     private Integer commetNum;
 
     private String describle;
+
+    private int state;
+
+    private User user;
+    private List<Image> images;
 
     public Integer getId() {
         return id;
@@ -109,6 +117,30 @@ public class Goods {
 
     public void setPolishTime(String polishTime) {
         this.polishTime = polishTime;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 
     @Override

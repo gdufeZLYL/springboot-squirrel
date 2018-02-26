@@ -20,7 +20,8 @@
         select
         <include refid="Base_Column_List" />
         from t_shop_catelog
-        where status = #{1,jdbcType=INTEGER}
+        where status = 1
+        ORDER BY id ASC
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from t_shop_catelog

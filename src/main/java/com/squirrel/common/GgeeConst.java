@@ -11,4 +11,5 @@ public class GgeeConst {
     public final static String DATA = "data";
 
     public static final int userPageSize = 10;
+    public static final int goodsPageSize = 16;
 }

@@ -3,6 +3,7 @@ package com.squirrel.service;
 import com.squirrel.pojo.Goods;
 
 import java.util.List;
+import java.util.Map;
 
 public interface GoodsService {
     /**
@@ -58,5 +59,18 @@ public interface GoodsService {
      * @return
      */
     public List<Goods> getGoodsByUserId(Integer user_id);
+
+    /**
+     * 根据商品分类,名称描述模糊查询分页获取
+     * @param pageNum
+     * @param pageSize
+     * @param catelogId
+     * @param name
+     * @param describle
+     * @return
+     */
+    Map<String, Object> getGoodsByCatelogIdAndNameAndDescrible(
+            int pageNum, int pageSize, int catelogId,
+            String name, String describle);
 
 }

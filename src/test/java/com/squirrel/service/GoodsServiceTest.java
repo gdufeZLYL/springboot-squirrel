@@ -46,8 +46,8 @@ public class GoodsServiceTest {
 
     @Test
     public void updateGoodsByPrimaryKeyWithBLOBs() throws Exception {
-        Goods goods = goodsService.getGoodsByPrimaryKey(49);
-        goods.setPolishTime("2018-01-03");
+        Goods goods = goodsService.getGoodsByPrimaryKey(48);
+        goods.setName("图书1");
         goodsService.updateGoodsByPrimaryKeyWithBLOBs(goods.getId(), goods);
     }
 

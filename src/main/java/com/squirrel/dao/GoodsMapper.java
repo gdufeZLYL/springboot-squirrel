@@ -64,34 +64,43 @@ public interface GoodsMapper {
      * 查询所有的商品
      * @return
      */
-    public List<Goods> selectAllGoods();
+    List<Goods> selectAllGoods();
 
     List<Goods> searchGoods(@Param("name") String name, @Param("describle") String describle);
+
+    /**
+     * 根据商品分类的id，查询商品数量
+     */
+    int selectCountByCatelog(@Param("catelog_id") Integer catelog_id,
+                             @Param("name") String name,
+                             @Param("describle") String describle);
 
     /**
      * 根据商品分类的id，查询商品
      * @param catelog_id
      * @return
      */
-    public List<Goods> selectByCatelog(@Param("catelog_id") Integer catelog_id,@Param("name") String name,@Param("describle") String describle);
+    List<Goods> selectByCatelog(@Param("catelog_id") Integer catelog_id,
+                                @Param("name") String name,
+                                @Param("describle") String describle);
 
     /**
      * 根据时间先后获取商品信息，进行分页查询
      * 未在xml中实现
      * @return
      */
-    public List<Goods> selectByDate(int page,int maxResults);
+    List<Goods> selectByDate(int page,int maxResults);
 
     /**
      * 根据catelog_id查询商品信息，结果按擦亮时间排序，最新的在前
      * @return
      */
-    public List<Goods> selectByCatelogOrderByDate(@Param("catelogId")Integer catelogId,@Param("limit")Integer limit);
+    List<Goods> selectByCatelogOrderByDate(@Param("catelogId")Integer catelogId,@Param("limit")Integer limit);
 
     /**
      * 查询登录用户的所有闲置商品
      * @param user_id
      * @return
      */
-    public List<Goods> getGoodsByUserId(Integer user_id);
+    List<Goods> getGoodsByUserId(Integer user_id);
 }

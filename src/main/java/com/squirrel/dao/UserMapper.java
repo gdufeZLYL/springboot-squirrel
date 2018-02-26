@@ -31,4 +31,6 @@ public interface UserMapper {
     int getCount();
 
     int updateStatus(@Param("id") int id, @Param("status") int status);
+
+    List<User> getUsersByIds(@Param("ids") List<Integer> ids);
 }

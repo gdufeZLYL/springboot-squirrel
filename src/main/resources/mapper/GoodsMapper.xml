@@ -15,14 +15,16 @@
     </resultMap>
     <resultMap id="ResultMapWithBLOBs" type="com.squirrel.pojo.Goods" extends="BaseResultMap" >
         <result column="describle" property="describle" jdbcType="LONGVARCHAR" />
+        <result column="state" property="state" jdbcType="INTEGER" />
     </resultMap>
     <sql id="Base_Column_List" >
         id, catelog_id, user_id, name, price, real_price, start_time, polish_time, end_time, commet_num
     </sql>
     <sql id="Blob_Column_List" >
-        describle
+        describle,state
     </sql>
     <sql id="Factor">
+        <!-- TODO::会引起分页插件bug -->
         --     and end_time >= now() order by polish_time DESC
     </sql>
     <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
@@ -39,17 +41,36 @@
         where name like concat('%',#{name},'%') OR describle like concat('%',#{describle},'%')
         <include refid="Factor"></include>
     </select>
-    <select id="selectByCatelog" resultMap="ResultMapWithBLOBs">
-        select * from t_shop_goods
-        where catelog_id = #{catelog_id,jdbcType=INTEGER}
-        <if test="name != null" >
-            AND (name like concat('%',#{name},'%')
+
+    <select id="selectCountByCatelog" resultType="int">
+        select COUNT(1) from t_shop_goods
+        where 1 = 1
+        <if test="catelog_id != 0">
+            AND catelog_id = #{catelog_id,jdbcType=INTEGER}
         </if>
-        <if test="describle != null" >
-            OR describle like concat('%',#{describle},'%'))
+        <if test="name != null and name != ''" >
+            AND (name like CONCAT(CONCAT('%', #{name}), '%')
+        </if>
+        <if test="describle != null and describle != ''" >
+            OR describle like CONCAT(CONCAT('%', #{describle}), '%'))
         </if>
         <include refid="Factor"></include>
     </select>
+
+    <select id="selectByCatelog" resultMap="ResultMapWithBLOBs">
+        select * from t_shop_goods
+        where 1 = 1
+        <if test="catelog_id != 0">
+            AND catelog_id = #{catelog_id,jdbcType=INTEGER}
+        </if>
+        <if test="name != null and name != ''" >
+            AND (name LIKE CONCAT(CONCAT('%', #{name}), '%')
+        </if>
+        <if test="describle != null and describle != ''" >
+            OR describle LIKE CONCAT(CONCAT('%', #{describle}), '%'))
+        </if>
+    </select>
+
     <select id="selectAllGoods" resultMap="ResultMapWithBLOBs">
         select * from t_shop_goods
     </select>

@@ -184,4 +184,17 @@
         status = #{status}
         where id = #{id}
     </update>
+
+    <select id="getUsersByIds" resultMap="BaseResultMap" parameterType="int">
+        SELECT
+          *
+        FROM t_shop_user
+        WHERE 1 = 1
+        <if test="ids != null and ids.size > 0">
+            AND id IN
+            <foreach collection="ids" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+    </select>
 </mapper>

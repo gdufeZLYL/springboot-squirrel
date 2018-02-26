@@ -147,4 +147,9 @@ public class UserServiceImpl implements UserService {
     public boolean unfreezeUser(int id) {
         return userMapper.updateStatus(id, 0) > 0;
     }
+
+    @Override
+    public List<User> getUsersByIds(List<Integer> ids) {
+        return userMapper.getUsersByIds(ids);
+    }
 }

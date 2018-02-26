@@ -1,6 +1,7 @@
 package com.squirrel.controller;
 
 import com.squirrel.common.GgeeConst;
+import com.squirrel.dto.AjaxResult;
 import com.squirrel.pojo.*;
 import com.squirrel.service.CatelogService;
 import com.squirrel.service.GoodsService;
@@ -12,10 +13,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -312,5 +310,24 @@ public class GoodsController {
             map.put("error","图片不合法");
             return map;
         }
+    }
+
+    //更新商品信息
+    @RequestMapping(value="/api/updateGoods", method= RequestMethod.POST)
+    @ResponseBody
+    public AjaxResult updateGoods(@RequestBody Goods goods) {
+        AjaxResult ajaxResult = new AjaxResult();
+        goodsService.updateGoodsByPrimaryKeyWithBLOBs(
+                goods.getId(), goods);
+        return new AjaxResult().setData(true);
+    }
+
+    //下架商品
+    @DeleteMapping("/api/offGoods/{id}")
+    @ResponseBody
+    public AjaxResult offGoods(@PathVariable int id) {
+        AjaxResult ajaxResult = new AjaxResult();
+        goodsService.deleteGoodsByPrimaryKey(id);
+        return new AjaxResult().setData(true);
     }
 }
