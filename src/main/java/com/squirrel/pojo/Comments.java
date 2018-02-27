@@ -5,11 +5,17 @@ public class Comments {
 
     private Integer userId;
 
+    private Integer atuserId;
+
     private Integer goodsId;
 
     private String createAt;
 
     private String content;
+
+    private User user;
+
+    private User atuser;
 
     public Integer getId() {
         return id;
@@ -25,6 +31,14 @@ public class Comments {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getAtuserId() {
+        return atuserId;
+    }
+
+    public void setAtuserId(Integer atuserId) {
+        this.atuserId = atuserId;
     }
 
     public Integer getGoodsId() {
@@ -49,5 +63,21 @@ public class Comments {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getAtuser() {
+        return atuser;
+    }
+
+    public void setAtuser(User atuser) {
+        this.atuser = atuser;
     }
 }

@@ -14,10 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service("userService")
@@ -151,5 +148,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getUsersByIds(List<Integer> ids) {
         return userMapper.getUsersByIds(ids);
+    }
+
+    @Override
+    public List<User> getUsersByIds(Set<Integer> ids) {
+        return userMapper.getUsersByIdsSet(ids);
     }
 }

@@ -3,10 +3,7 @@ package com.squirrel.controller;
 import com.squirrel.common.GgeeConst;
 import com.squirrel.dto.AjaxResult;
 import com.squirrel.pojo.*;
-import com.squirrel.service.CatelogService;
-import com.squirrel.service.GoodsService;
-import com.squirrel.service.ImageService;
-import com.squirrel.service.UserService;
+import com.squirrel.service.*;
 import com.squirrel.util.DateUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -22,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/goods")
@@ -37,6 +35,8 @@ public class GoodsController {
     private CatelogService catelogService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CommentsService commentsService;
 
     /**
      * 首页显示商品，每一类商品查询6件，根据最新上架排序 key的命名为catelogGoods1、catelogGoods2....
@@ -143,11 +143,29 @@ public class GoodsController {
         goodsExtend.setImages(imageList);
         ModelAndView modelAndView = new ModelAndView();
         User cur_user = (User) request.getSession().getAttribute("cur_user");
+        List<Comments> commentsList = commentsService.getCommentsByGoodsId(id);
+        Set<Integer> userIds = new HashSet<>();
+        for (Comments comments : commentsList) {
+            userIds.add(comments.getUserId());
+            if (comments.getAtuserId() != 0){
+                userIds.add(comments.getAtuserId());
+            }
+        }
+        List<User> users = userService.getUsersByIds(userIds);
+        Map<Integer, User> id2user = users.stream().
+                collect(Collectors.toMap(User::getId, user -> user));
+        for (Comments comments : commentsList) {
+            comments.setUser(id2user.get(comments.getUserId()));
+            if (comments.getAtuserId() != 0){
+                comments.setAtuser(id2user.get(comments.getAtuserId()));
+            }
+        }
         modelAndView.addObject("cur_user", cur_user);
         modelAndView.addObject("goodsExtend", goodsExtend);
         modelAndView.addObject("seller", seller);
         modelAndView.addObject("search",str);
         modelAndView.addObject("catelog", catelog);
+        modelAndView.addObject("commentsList", commentsList);
         modelAndView.setViewName("/goods/detailGoods");
         return modelAndView;
     }

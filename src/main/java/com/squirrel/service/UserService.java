@@ -5,6 +5,7 @@ import com.squirrel.pojo.User;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface UserService {
     void addUser(User user);
@@ -27,4 +28,6 @@ public interface UserService {
     boolean unfreezeUser(int id);
 
     List<User> getUsersByIds(List<Integer> ids);
+
+    List<User> getUsersByIds(Set<Integer> ids);
 }

@@ -3,15 +3,27 @@
 <head>
     <meta charset="utf-8" />
     <title>广财大二手工坊</title>
+    <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <!--
     <script type="text/javascript" th:src="@{/js/jquery.js}" ></script>
+    -->
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/materialize.min.js}" ></script>
     <script type="text/javascript" th:src="@{/js/index.bundle.js}" ></script>
+    <script type="text/javascript" th:src="@{/js/app.js}"></script>
+    <script type="text/javascript" th:src="@{/js/goods/detailGoods.js}" ></script>
     <link rel="stylesheet" th:href="@{/css/materialize-icon.css}" />
     <link rel="stylesheet" th:href="@{/css/detail.css}" />
 </head>
 <body ng-view="ng-view">
-<script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var cur_user = /*[[${cur_user}]]*/;
+    var commentsList = /*[[${commentsList}]]*/;
+    var goodsExtend = /*[[${goodsExtend}]]*/;
+
     function showLogin() {
         if($("#signup-show").css("display")=='block'){
             $("#signup-show").css("display","none");
@@ -39,6 +51,11 @@
             $("#changeName").css("display","none");
         }
     }
+
+    $(function(){
+        detailGoodsPage.init(cur_user, commentsList, goodsExtend);
+    });
+    /*]]>*/
 </script>
 <!--
     时间：2018/01/05 22:02:15
@@ -316,28 +333,69 @@
             <h1 class="title">评论</h1>
             <hr class="hr1" />
             <hr class="hr2" />
-            <div class="comment-collection">
-                <div class="comment-item ng-scope">
+            <div class="comment-collection" th:each="item,itemStats : ${commentsList}">
+                <div class="comment-item ng-scope" th:if="${item.atuserId == 0}">
                     <div class="comment-main-content">
-                        <em class="name ng-binding">zn:</em>
+                        <em class="name ng-binding" th:text="${item.user.username}+':'">ggee:</em>
                         <em class="ng-hide">回复</em>
                         <em class="name ng-binding ng-hide">@:</em>
-                        <em class="ng-binding">不错。</em>
+                        <em class="ng-binding" th:text="${item.content}">不错。</em>
                     </div>
                     <div class="comment-function">
-                        <em class="time ng-biinding">2018/01/06 10:02:02</em>
-                        <a class="reply-or-delete">删除</a>
-                        <a class="reply-or-delete">回复</a>
+                        <em class="time ng-biinding" th:text="${item.createAt}">2018/01/06 10:02:02</em>
+                        <a class="reply-or-delete" th:onclick="'detailGoodsPage.deleteCommentsAction('+${item.id}+')'" th:if="${cur_user != null and item.userId == cur_user.id}">删除</a>
+                        <a class="reply-or-delete" th:onclick="'detailGoodsPage.replyCommentsModalAction('+${itemStats.index}+')'" th:if="${cur_user != null and item.userId != cur_user.id}">回复</a>
+                    </div>
+                </div>
+                <div class="comment-item ng-scope" th:if="${item.atuserId != 0}">
+                    <div class="comment-main-content">
+                        <em class="name ng-binding" th:text="${item.user.username}">ggee</em>
+                        <em>回复</em>
+                        <em class="name ng-binding" th:text="${item.atuser.username}+':'">llwwlql:</em>
+                        <em class="ng-binding" th:text="${item.content}">不错。</em>
+                    </div>
+                    <div class="comment-function">
+                        <em class="time ng-biinding" th:text="${item.createAt}">2018/01/06 10:02:02</em>
+                        <a class="reply-or-delete" th:onclick="'detailGoodsPage.deleteCommentsAction('+${item.id}+')'" th:if="${cur_user != null and item.userId == cur_user.id}">删除</a>
+                        <a class="reply-or-delete" th:onclick="'detailGoodsPage.replyCommentsModalAction('+${itemStats.index}+')'" th:if="${cur_user != null and item.userId != cur_user.id}">回复</a>
                     </div>
                 </div>
             </div>
-            <div class="comment-add row">
+            <div class="comment-add row" th:if="${cur_user != null}">
                 <div class="input-field col s12">
                     <i class="iconfont prefix"></i>
                     <input id="commentbox" type="text" class="validate ng-pristine ng-untouched ng-valid ng-empty"/>
                     <label for="commentbox">这里写下评论</label>
-                    <button type="submit" class="waves-effect wave-light btn comment-submit">确认</button>
+                    <button type="submit" id="addCommentsBtn" class="waves-effect wave-light btn comment-submit">确认</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--回复窗口-->
+<div id="replyCommentsModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">回复</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" onsubmit="return false;">
+                    <input type="hidden" id="replyAtuserId" />
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <input id="replyContent" type="text" class="form-control" placeholder="" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button data-bb-handler="confirm" type="button" id="confirmReplyCommentsBtn" class="btn btn-success radius">
+                    <span><i class="icon-ok"></i></span> 确定
+                </button>
+                <button data-bb-handler="cancel" type="button" id="cancelReplyCommentsBtn" class="btn btn-danger radius">取消</button>
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@
     <resultMap id="BaseResultMap" type="com.squirrel.pojo.Comments" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="atuser_id" property="atuserId" jdbcType="INTEGER" />
         <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
         <result column="create_at" property="createAt" jdbcType="VARCHAR" />
     </resultMap>
@@ -11,7 +12,7 @@
         <result column="content" property="content" jdbcType="LONGVARCHAR" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id, user_id, goods_id, create_at
+        id, user_id, atuser_id goods_id, create_at
     </sql>
     <sql id="Blob_Column_List" >
         content
@@ -29,9 +30,10 @@
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.squirrel.pojo.Comments" >
-        insert into t_shop_comments (id, user_id, goods_id,
+        insert into t_shop_comments (user_id, atuser_id, goods_id,
         create_at, content)
-        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER},
+        values (#{userId,jdbcType=INTEGER},
+        #{atuserId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER},
         #{createAt,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.squirrel.pojo.Comments" >
@@ -42,6 +44,9 @@
             </if>
             <if test="userId != null" >
                 user_id,
+            </if>
+            <if test="atuserId != null" >
+                atuser_id,
             </if>
             <if test="goodsId != null" >
                 goods_id,
@@ -60,6 +65,9 @@
             <if test="userId != null" >
                 #{userId,jdbcType=INTEGER},
             </if>
+            <if test="atuserId != null" >
+                #{atuserId,jdbcType=INTEGER},
+            </if>
             <if test="goodsId != null" >
                 #{goodsId,jdbcType=INTEGER},
             </if>
@@ -77,6 +85,9 @@
             <if test="userId != null" >
                 user_id = #{userId,jdbcType=INTEGER},
             </if>
+            <if test="atuserId != null" >
+                atuser_id = #{userId,jdbcType=INTEGER},
+            </if>
             <if test="goodsId != null" >
                 goods_id = #{goodsId,jdbcType=INTEGER},
             </if>
@@ -92,6 +103,7 @@
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.squirrel.pojo.Comments" >
         update t_shop_comments
         set user_id = #{userId,jdbcType=INTEGER},
+        atuser_id = #{atuserId,jdbcType=INTEGER},
         goods_id = #{goodsId,jdbcType=INTEGER},
         create_at = #{createAt,jdbcType=VARCHAR},
         content = #{content,jdbcType=LONGVARCHAR}
@@ -100,8 +112,16 @@
     <update id="updateByPrimaryKey" parameterType="com.squirrel.pojo.Comments" >
         update t_shop_comments
         set user_id = #{userId,jdbcType=INTEGER},
+        atuser_id = #{atuserId,jdbcType=INTEGER},
         goods_id = #{goodsId,jdbcType=INTEGER},
         create_at = #{createAt,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <select id="selectByGoodsId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+        select
+        *
+        from t_shop_comments
+        where goods_id = #{goodsId,jdbcType=INTEGER}
+    </select>
 </mapper>
