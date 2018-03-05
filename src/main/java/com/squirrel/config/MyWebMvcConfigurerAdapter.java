@@ -7,7 +7,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class MyWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
 
-    private static final String UPLOAD_IMAGE_PATH = "file:D:/IdeaProjects/data/springboot-squirrel/upload/images/";
+//    private static final String UPLOAD_IMAGE_PATH = "file:D:/IdeaProjects/data/springboot-squirrel/upload/images/";
+    private static final String UPLOAD_IMAGE_PATH = "file:/root/Java/data/springboot-squirrel/upload/images/";
 
     /**
      * 配置静态访问资源

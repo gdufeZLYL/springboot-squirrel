@@ -25,26 +25,26 @@ public class ImageServiceTest {
     @Autowired
     private ImageService imageService;
 
-    @Test
-    public void insert() throws Exception {
-        Image image = new Image();
-        image.setGoodsId(49);
-        image.setImgUrl("sdadasd");
-        imageService.insert(image);
-    }
-
-    @Test
-    public void getImagesByGoodsPrimaryKey() throws Exception {
-        List<Image> images = imageService.getImagesByGoodsPrimaryKey(48);
-        for (Image image : images) {
-            LOG.info("image = " + image);
-        }
-    }
-
-    @Test
-    public void deleteImagesByGoodsPrimaryKey() throws Exception {
-        int result = imageService.deleteImagesByGoodsPrimaryKey(49);
-        LOG.info("result = " + result);
-    }
+//    @Test
+//    public void insert() throws Exception {
+//        Image image = new Image();
+//        image.setGoodsId(49);
+//        image.setImgUrl("sdadasd");
+//        imageService.insert(image);
+//    }
+//
+//    @Test
+//    public void getImagesByGoodsPrimaryKey() throws Exception {
+//        List<Image> images = imageService.getImagesByGoodsPrimaryKey(48);
+//        for (Image image : images) {
+//            LOG.info("image = " + image);
+//        }
+//    }
+//
+//    @Test
+//    public void deleteImagesByGoodsPrimaryKey() throws Exception {
+//        int result = imageService.deleteImagesByGoodsPrimaryKey(49);
+//        LOG.info("result = " + result);
+//    }
 
 }
