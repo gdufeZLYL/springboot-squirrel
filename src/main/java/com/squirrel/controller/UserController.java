@@ -56,6 +56,7 @@ public class UserController {
             user1.setPassword(str);
             user1.setGoodsNum(0);
             user1.setStatus((byte)0);
+            user1.setPower((byte)10);
             userService.addUser(user1);
         }
         return "redirect:"+url;
@@ -72,14 +73,10 @@ public class UserController {
     public ModelAndView loginValidate(HttpServletRequest request, HttpServletResponse response, User user, ModelMap modelMap) {
         User cur_user = userService.getUserByPhone(user.getPhone());
         String url=request.getHeader("Referer");
-//        ModelAndView modelAndView = new ModelAndView();
         if(cur_user != null && cur_user.getStatus() == 0) {
             String pwd = MD5.md5(user.getPassword());
             if(pwd.equals(cur_user.getPassword())) {
                 request.getSession().setAttribute("cur_user",cur_user);
-//                modelAndView.addObject("cur_user", cur_user);
-//                modelAndView.setViewName("redirect:"+url);
-//                return modelAndView;
                 return new ModelAndView("redirect:"+url);
             }
         }

@@ -3,13 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <title>广财大二手工坊</title>
-    <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <!--<link rel="stylesheet" th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" />-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/index.css}" />
     <!--
     <script type="text/javascript" th:src="@{/js/jquery.js}" ></script>
     -->
-    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    <!--<script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>-->
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <!--<script type="text/javascript" th:src="@{https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>-->
+    <script type="text/javascript" th:src="@{/js/bootstrap/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/materialize.min.js}" ></script>
     <script type="text/javascript" th:src="@{/js/index.bundle.js}" ></script>
     <script type="text/javascript" th:src="@{/js/app.js}"></script>
@@ -333,7 +336,15 @@
             <h1 class="title">评论</h1>
             <hr class="hr1" />
             <hr class="hr2" />
-            <div class="comment-collection" th:each="item,itemStats : ${commentsList}">
+            <div class="comment-add row" th:if="${cur_user == null}" style="font-size: 18px;">
+                <div class="input-field col s12">
+                    <a th:onclick="'showLogin()'">登录</a>
+                    <em>或</em>
+                    <a th:onclick="'showSignup()'">注册</a>
+                    <em>后查看评论</em>
+                </div>
+            </div>
+            <div th:if="${cur_user != null}" class="comment-collection" th:each="item,itemStats : ${commentsList}">
                 <div class="comment-item ng-scope" th:if="${item.atuserId == 0}">
                     <div class="comment-main-content">
                         <em class="name ng-binding" th:text="${item.user.username}+':'">ggee:</em>
