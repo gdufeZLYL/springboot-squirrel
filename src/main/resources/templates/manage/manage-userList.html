@@ -43,7 +43,7 @@
         </a>
         <ul class="dropdown-menu">
         <li><a href="javascript:void(0);">修改密码</a></li>
-        <li><a href="javascript:void(0);">退出系统</a></li>
+        <li><a th:href="@{/user/logout}">退出系统</a></li>
         </ul>
         </li>
         </ul>
@@ -55,7 +55,7 @@
     <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
     <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;用户管理 <span class="sr-only">(current)</span></a></li>
-    <li><a href="/manage/goods/list"><i class="fa fa-shopping-bag"></i>&nbsp;商品管理</a></li>
+    <li><a th:href="@{/manage/goods/list}"><i class="fa fa-shopping-bag"></i>&nbsp;商品管理</a></li>
     <li><a href="#"><i class="fa fa-cubes"></i>&nbsp;商品审核</a></li>
     </ul>
     </div>

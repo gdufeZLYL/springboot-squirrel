@@ -76,6 +76,8 @@ public class UserController {
         if(cur_user != null && cur_user.getStatus() == 0) {
             String pwd = MD5.md5(user.getPassword());
             if(pwd.equals(cur_user.getPassword())) {
+                //设置单位为秒，设置为-1永不过期
+                request.getSession().setMaxInactiveInterval(24*60*60);    //24小时
                 request.getSession().setAttribute("cur_user",cur_user);
                 return new ModelAndView("redirect:"+url);
             }
@@ -97,6 +99,8 @@ public class UserController {
             if(cur_user != null) {
                 String pwd = MD5.md5(password);
                 if(pwd.equals(cur_user.getPassword())) {
+                    //设置单位为秒，设置为-1永不过期
+                    request.getSession().setMaxInactiveInterval(24*60*60);    //24小时
                     request.getSession().setAttribute(GgeeConst.CUR_USER,cur_user);
                     ajaxResult.setData(cur_user);
                 } else {

@@ -58,7 +58,7 @@ public class ManageController {
         User currentUser = (User) request.getSession().getAttribute(GgeeConst.CUR_USER);
         model.addAttribute(GgeeConst.CUR_USER, currentUser);
         if (currentUser == null || currentUser.getPower() != 90) {
-            return "404";
+            return "/error/404";
         } else {
             Map<String, Object> data = userService.getUsers(page, GgeeConst.userPageSize);
             model.addAttribute(GgeeConst.DATA, data);
@@ -78,7 +78,7 @@ public class ManageController {
         User currentUser = (User) request.getSession().getAttribute(GgeeConst.CUR_USER);
         model.addAttribute(GgeeConst.CUR_USER, currentUser);
         if (currentUser == null || currentUser.getPower() != 90) {
-            return "404";
+            return "/error/404";
         } else {
             Map<String, Object> data = goodsService.getGoodsByCatelogIdAndNameAndDescrible(
                     page, GgeeConst.goodsPageSize, catelogId, text, text
