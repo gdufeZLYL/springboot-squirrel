@@ -31,3 +31,6 @@ JDK1.8, Maven 3.3.9, IntelliJ IDEA, Navicat Premium, Git
 ![评论](https://github.com/gdufeZLYL/blog/blob/master/images/20180421165626.png)
 
 ![程序分析图](https://github.com/gdufeZLYL/blog/blob/master/images/20180417134904.png)
+
+## **讨论**
+有问题请在[issue](https://github.com/gdufeZLYL/springboot-squirrel/issues)讨论
