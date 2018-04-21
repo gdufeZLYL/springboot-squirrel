@@ -22,8 +22,12 @@
 JDK1.8, Maven 3.3.9, IntelliJ IDEA, Navicat Premium, Git
 
 ## **效果预览**
-![首页](https://github.com/gdufeZLYL/blog/tree/master/images/20180421162953.png)
-![登录](https://github.com/gdufeZLYL/blog/tree/master/images/20180421165357.png)
-![商品详情页](https://github.com/gdufeZLYL/blog/tree/master/images/20180421165448.png)
-![评论](https://github.com/gdufeZLYL/blog/tree/master/images/20180421165626.png)
+![首页](https://github.com/gdufeZLYL/blog/blob/master/images/20180421162953.png)
 
+![登录](https://github.com/gdufeZLYL/blog/blob/master/images/20180421165357.png)
+
+![商品详情页](https://github.com/gdufeZLYL/blog/blob/master/images/20180421165448.png)
+
+![评论](https://github.com/gdufeZLYL/blog/blob/master/images/20180421165626.png)
+
+![程序分析图](https://github.com/gdufeZLYL/blog/blob/master/images/20180417134904.png)
