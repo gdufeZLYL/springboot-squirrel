@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>广财大二手工坊控制台-用户管理</title>
+    <!--<link rel="stylesheet" th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" />-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}" />
+
+    <!--<link th:href="@{https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" />-->
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+
+    <link th:href="@{/css/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/manage/manage-app.css}" />
+
+    <!--<script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>-->
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+
+    <!--<script type="text/javascript" th:src="@{https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>-->
+    <script type="text/javascript" th:src="@{/js/bootstrap/bootstrap.min.js}"></script>
+
+    <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/manage/manage-app.js}"></script>
+    <script type="text/javascript" th:src="@{/js/manage/manage-goodsList.js}"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" href="#"><img style="width: 32px;height: 32px;" th:src="@{/img/manage-logo.png}" /></a>
+        <a class="navbar-brand" href="#">广财大二手工坊控制台</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <img class="img-circle" style="width: 32px;height: 32px;" th:src="@{/img/photo.jpg}" />&nbsp;&nbsp;<span th:text="${cur_user.username}"></span>
+        <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+        <li><a href="javascript:void(0);">修改密码</a></li>
+        <li><a th:href="@{/user/logout}">退出系统</a></li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+    </div>
+    </nav>
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+    <li><a th:href="@{/manage/user/list}"><span class="glyphicon glyphicon-user"></span>&nbsp;用户管理</a></li>
+    <li class="active"><a href="#"><i class="fa fa-shopping-bag"></i>&nbsp;商品管理<span class="sr-only">(current)</span></a></li>
+    <li><a href="#"><i class="fa fa-cubes"></i>&nbsp;商品审核</a></li>
+    </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">商品管理</h1>
+    <div class="row" style="margin-bottom: 5px;">
+        <div class="col-md-12 form-inline">
+            <input type="text" class="form-control" size="50" id="queryText" placeholder="请输入商品名或相关描述" />
+            <label for="queryCatelogId">品类</label>
+            <select class="form-control" id="queryCatelogId">
+                <option th:each="item,itemStats : ${data['catelogs']}"
+                                            th:value="${item.id}" th:text="${item.name}">
+                </option>
+            </select>
+            <button type="button" class="btn btn-primary" id="queryGoodsBtn"><i class="glyphicon glyphicon-search"></i>查询</button>
+        </div>
+        <!--
+        <div class="col-md-2">
+        </div>
+        -->
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+        <th>商品名</th>
+        <th>用户名</th>
+        <th>价格</th>
+        <th>真实价格</th>
+        <th>开始时间</th>
+        <th>到期时间</th>
+        <th>状态</th>
+        <th>评论</th>
+        <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item,itemStats : ${data['goodsList']}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.user.username}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.realPrice}"></td>
+        <td th:text="${item.startTime}"></td>
+        <td th:text="${item.endTime}"></td>
+         <td th:if="${item.state == 0}"><span class="label label-success">进行中</span></td>
+            <td th:if="${item.state == 1}"><span class="label label-danger">已下架</span></td>
+            <td th:if="${item.state == 2}"><span class="label label-warning">审核中</span></td>
+        <td th:text="${item.commetNum}"></td>
+        <td>
+            <button type="button" class="btn btn-primary btn-xs" th:onclick="'manageGoodsListPage.updateGoodsModalAction('+${itemStats.index}+')'"><i class="fa fa-edit"></i>编辑</button>
+            <button type="button" class="btn btn-danger btn-xs" th:onclick="'manageGoodsListPage.offGoodsAction('+${item.id}+')'"><i class="fa fa-trash"></i>下架</button>
+        </td>
+        </tr>
+        </tbody>
+        </table>
+    </div>
+    <div class="row">
+    <div class="col-md-9" id="subPageHead">
+    </div>
+    <div class="col-md-3">
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- 编辑窗口 -->
+    <div id="updateGoodsModal" class="bootbox modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">编辑商品</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" onsubmit="return false;">
+                        <input type="hidden" id="updateGoodsIndex" />
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">商品名</label>
+                                <div class="col-sm-8">
+                                    <input id="updateName" type="text" class="form-control" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">发布人</label>
+                                <div class="col-sm-8">
+                                    <input id="updateUsername" readonly="readonly" type="text" class="form-control" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">品类</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="updateCatelogId">
+                                        <option th:each="item,itemStats : ${data['catelogs']}"
+                                                                    th:if="${item.id != 0}" th:value="${item.id}" th:text="${item.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">价格</label>
+                                <div class="col-sm-8">
+                                    <input id="updatePrice" type="text" class="form-control" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">真实价格</label>
+                                <div class="col-sm-8">
+                                    <input id="updateRealPrice" type="text" class="form-control" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">开始时间</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control form_datetime" value="" id="updateStartTime" data-date-format="yyyy-mm-dd hh:ii" readonly="readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">到期时间</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control form_datetime" value="" id="updateEndTime" data-date-format="yyyy-mm-dd hh:ii" readonly="readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">商品描述</label>
+                                <div class="col-sm-8">
+                                    <textarea  id="updateDescrible" class="form-control" rows="8"></textarea>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button data-bb-handler="confirm" type="button" id="confirmUpdateGoodsBtn" class="btn btn-success radius">
+                        <span><i class="icon-ok"></i></span> 保存
+                    </button>
+                    <button data-bb-handler="cancel" type="button" id="cancelUpdateGoodsBtn" class="btn btn-danger radius">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var pageNum = /*[[${data['pageNum']}]]*/;
+    var pageSize = /*[[${data['pageSize']}]]*/;
+    var totalPageNum = /*[[${data['totalPageNum']}]]*/;
+    var totalPageSize = /*[[${data['totalPageSize']}]]*/;
+    var catelogId = /*[[${data['catelogId']}]]*/;
+    var text = /*[[${data['text']}]]*/;
+    var goodsList = /*[[${data['goodsList']}]]*/;
+
+    $(function(){
+        app.init();
+        manageGoodsListPage.init(pageNum, pageSize,
+        totalPageNum, totalPageSize,
+        catelogId, text, goodsList);
+    });
+    /*]]>*/
+</script>
+</body>
+</html>
+
