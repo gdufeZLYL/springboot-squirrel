@@ -6,20 +6,13 @@
 - Spring+SpringMVC+MyBatis
 - JavaScript+Jquery+React
 
-## **项目重构:**
-TDDO::项目重构
-
 ## **技术选型:**
 - [JDK1.8]()
 - [Maven]()
 - [SpringBoot](https://projects.spring.io/spring-boot/)
 - [MyBatis](http://www.mybatis.org/mybatis-3/zh/index.html)
 - [Thymeleaf](http://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html)
-- [Druid](https://github.com/alibaba/druid/)
-- [Lockback]()
 - [MySQL]()
-- [Redis]()
-- [Caffeine Cache]()
 - [JQuery]()
 - [Bootstrap]()
 - [FontAwesome]()
@@ -29,7 +22,8 @@ TDDO::项目重构
 JDK1.8, Maven 3.3.9, IntelliJ IDEA, Navicat Premium, Git
 
 ## **效果预览**
-TODO::效果预览
+![首页](https://github.com/gdufeZLYL/blog/tree/master/images/20180421162953.png)
+![登录](https://github.com/gdufeZLYL/blog/tree/master/images/20180421165357.png)
+![商品详情页](https://github.com/gdufeZLYL/blog/tree/master/images/20180421165448.png)
+![评论](https://github.com/gdufeZLYL/blog/tree/master/images/20180421165626.png)
 
-## **更新记录**
-- 2017年12月31日v0.1.0 创建项目,
